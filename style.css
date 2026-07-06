@@ -1,0 +1,1972 @@
+/* RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #5c4a3c; /* Warna teks cokelat hangat agar tidak kaku hitam */
+    -webkit-font-smoothing: antialiased;
+}
+
+
+
+/* CARDS COMMON STYLE */
+.card {
+    background-color: #faf6f0;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(74, 63, 53, 0.05);
+    margin-bottom: 30px;
+    border: 1px solid #f3ebe4;
+}
+
+/* TATA LETAK FOTO UTAMA PALING ATAS */
+.top-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Mengunci posisi tepat di tengah-tengah layar */
+    justify-content: center;
+    margin: 30px auto 15px auto; /* Jarak spasi atas dan bawah foto */
+    text-align: center;
+	background-color: #faf6f0;
+}
+
+.profile-frame {
+    width: 160px;  /* Ukuran diameter foto */
+    height: 160px;
+    border-radius: 50%; /* Membuat bentuk lingkaran sempurna */
+    overflow: hidden;
+    border: 4px solid #ffffff; /* Bingkai putih tebal khas portrait */
+    box-shadow: 0 10px 25px rgba(109, 84, 64, 0.15); /* Bayangan lembut */
+    background-color: #faf6f0;
+    
+    /* MODIFIKASI: Menjalankan animasi muncul (profileFadeIn) SEKALIGUS animasi mengapung (floatAnimation) bersamaan */
+    animation: 
+        profileFadeIn 1.5s ease-out forwards,
+        floatAnimation 4s ease-in-out infinite 1.5s; /* Animasi mengapung baru jalan setelah efek muncul selesai */
+    
+    opacity: 0; /* Dimulai dari transparan */
+}
+
+.profile-frame img {
+    width: 100%;
+    height: 100%;
+    background-color: #faf6f0;    
+    object-fit: cover; /* Menjamin foto terpotong rapi & proporsional */
+    display: block;
+}
+
+/* Teks Pemanis Kecil di Bawah Foto */
+.profile-sparkle {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6d5440;
+    letter-spacing: 1px;
+}
+
+/* KEYFRAME BARU: Efek muncul halus dari bawah saat pertama dimuat */
+@keyframes profileFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* KUNCI ANIMASI MENGAPUNG (FLOATING EFFECT) */
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px); /* Foto akan naik sedikit setinggi 8px */
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Penyesuaian Responsif untuk Layar HP */
+@media (max-width: 600px) {
+    .profile-frame {
+        width: 130px; /* Ukuran disesuaikan sedikit lebih kecil di HP */
+        height: 130px;
+    }
+    .profile-sparkle {
+        font-size: 0.85rem;
+    }
+}
+
+/* GAYA UNDANGAN MEWAH (LUXURY INVITATION) */
+.luxury-invitation {
+    background: #ffffff !important;
+    border: 1px solid #f2eade;
+    padding: 40px 30px !important;
+    border-radius: 24px !important;
+    box-shadow: 0 15px 45px rgba(109, 84, 64, 0.06) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Lencana Tanggal di Bagian Atas */
+.invitation-date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #d4a373;
+    padding: 6px 20px;
+    border-radius: 50px;
+    margin-bottom: 25px;
+    background: #fffaf5;
+}
+
+.date-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #4a3f35;
+    letter-spacing: 3px;
+}
+
+.gold-sparkle {
+    color: #d4a373;
+    font-size: 0.8rem;
+}
+
+/* Judul Babak */
+.invitation-heading {
+    font-family: 'Georgia', serif;
+    font-weight: 400;
+    font-style: italic;
+    color: #6d5440;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* Garis Pembatas Emas Minimalis */
+.elegant-divider {
+    width: 60px;
+    height: 1px;
+    background: #d4a373;
+    margin: 0 auto 30px auto;
+}
+
+/* Blok Isi Surat Tulisan Tangan */
+.invitation-letter {
+    max-width: 520px;
+    margin: 30px auto 0 auto;
+    text-align: center;
+	
+}
+
+/* PENGATURAN FONT TULISAN TANGAN */
+.invitation-letter .salutation {
+    font-family: 'Georgia', cursive, serif; /* Memberikan kesan tulisan surat personal */
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #4a3f35;
+    margin-bottom: 15px;
+}
+
+.invitation-letter .letter-body {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    color: #5c4a3c;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-justify: inter-word;
+}
+
+.invitation-letter .closing {
+    font-family: 'Georgia', cursive, serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #6d5440;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-top: 25px;
+}
+
+/* Penutup Kartu di Paling Bawah */
+.elegant-divider-bottom {
+    margin-top: 35px;
+    color: #d4a373;
+    font-size: 0.8rem;
+    position: relative;
+}
+
+.elegant-divider-bottom::before,
+.elegant-divider-bottom::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: #e6ded4;
+}
+
+.elegant-divider-bottom::before { right: 54%; }
+.elegant-divider-bottom::after { left: 54%; }
+
+/* RESPONSIVE UNTUK LAYAR HP */
+@media (max-width: 600px) {
+    .luxury-invitation {
+        padding: 30px 20px !important;
+    }
+    .date-text {
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+    }
+    .invitation-heading {
+        font-size: 1.5rem;
+    }
+    .invitation-letter .salutation {
+        font-size: 1.15rem;
+    }
+    .invitation-letter .letter-body {
+        font-size: 0.92rem;
+        line-height: 1.7;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* TYPOGRAPHY */
+/* 2. FONT KHUSUS JUDUL UTAMA & JUDUL PITA (Paling Berpengaruh) */
+h1, h2, h3, .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    letter-spacing: 1px; /* Memberikan ruang napas antar huruf biar elegan */
+    color: #4a3f35;
+}
+
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* GAYA PITA SPANDUK 3D PADA JUDUL */
+.section-title {
+    position: relative;
+    display: inline-block;      /* Memastikan panjang pita mengikuti panjang teks */
+    background: #ecdcc9;        /* Warna utama badan pita (krem hangat) */
+    color: #b94e48;             /* Warna teks judul (cokelat gelap) */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; /* Ditambah sedikit ukurannya karena font ini tipis anggun */
+    font-weight: 600;
+    font-style: normal;
+    padding: 10px 40px;
+    margin: 40px auto 20px auto;
+    text-align: center;
+    left: 50%;                  /* Proses memposisikan pita tepat di tengah */
+    transform: translateX(-50%);
+    
+    /* Efek bayangan halus di bawah pita utama */
+    box-shadow: 0 4px 15px rgba(109, 84, 64, 0.1);
+}
+
+/* 1. Sayap Lipatan Pita Sebelah KIRI */
+.section-title::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: -20px;
+    z-index: -1;
+    
+    /* Membuat ujung pita berbentuk garpu/segitiga masuk */
+    border: 22px solid #dfcdb9; /* Warna sayap pita dibuat sedikit lebih gelap */
+    border-left-color: transparent; /* Memotong bagian ujung kiri */
+    
+    /* Sambungan efek lipatan bawah pita */
+    border-right: 15px solid #bd9b7d; 
+}
+
+/* 2. Sayap Lipatan Pita Sebelah KANAN */
+.section-title::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: -20px;
+    z-index: -1;
+    
+    /* Membuat ujung pita sebelah kanan */
+    border: 22px solid #dfcdb9;
+    border-right-color: transparent; /* Memotong bagian ujung kanan */
+    
+    /* Sambungan efek lipatan bawah pita */
+    border-left: 15px solid #bd9b7d;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 0.95rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; /* Dibuat miring agar puitis */
+    font-size: 1.2rem;
+    font-weight: 400;
+    background-color: #faf6f0;
+    margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* 1. HAPPY BIRTHDAY (HERO) */
+.hero-section {
+    background: linear-gradient(135deg, #f7d6c8 0%, #f5e5d9 100%);
+    height: 100vh;
+	font-family: 'Cormorant Garamond', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+	font-family: 'Dancing Script', cursive;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8a6552;
+}
+
+.hero-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.5rem;
+    color: #b55b4c;
+    margin: 10px 0;
+    animation: float 3s ease-in-out infinite;
+}
+
+.hero-name {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #6d5440;
+}
+
+/* 2. OPENING */
+.heart-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* 3. OUR JOURNEY TOGETHER */
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.blog-card {
+    background-color: #faf6f0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(74, 63, 53, 0.04);
+    border: 1px solid #f3ebe4;
+	margin-bottom: 30px;
+}
+
+.blog-img {
+    background-color: #eedcd0;
+    height: 500px;
+    display: block;
+	margin: 20px auto;
+	border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    color: #8a7665;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.blog-content {
+    padding: 25px;
+}
+
+.blog-date {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #b55b4c;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.blog-content h3 {
+    margin-bottom: 10px;
+    color: #6d5440;
+}
+
+/* TATA LETAK BENTO GRID */
+.bento-container {
+    display: grid;
+    /* Membuat 3 kolom sama rata */
+    grid-template-columns: repeat(3, 1fr); 
+    /* Membuat 2 baris otomatis */
+    grid-template-rows: 350px 350px; 
+    /* Jarak antar sekat foto */
+    gap: 15px; 
+    max-width: 95%;
+    margin: 30px auto;
+}
+
+/* Mengatur karakteristik item bento */
+.bento-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px; /* Sudut melengkung halus */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Mengatur foto di dalam bento agar pas */
+.bento-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Foto tidak akan gepeng */
+    display: block;
+}
+
+/* STRUKTUR BENTO MINI (BABAK 1) */
+.bento-mini-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Kolom kiri sedikit lebih lebar dari kolom kanan */
+    grid-template-rows: 320px 320px;  /* Total tinggi gabungan baris adalah 220px */
+    gap: 10px;                        /* Jarak antar sekat foto */
+    padding: 15px 15px 0 15px;        /* Jarak di dalam kotak putih */
+    background: #ffffff;
+}
+
+.bento-mini-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;              /* Sudut melengkung halus */
+    box-shadow: 0 2px 8px rgba(74, 63, 53, 0.04);
+}
+
+.bento-mini-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                /* Menjaga foto tidak gepeng */
+    display: block;
+}
+
+/* Kunci Formasi: Membuat Item Pertama memakan 2 baris ke bawah (Pojok Kiri) */
+.bento-mini-tall {
+    grid-row: span 2;
+}
+
+/* RESPONSIF UNTUK HP (Agar foto tidak terlalu kerdil saat layar mengecil) */
+@media (max-width: 600px) {
+    .bento-mini-container {
+        grid-template-rows: 90px 90px; /* Menurunkan tinggi baris sedikit di HP agar proporsional */
+    }
+}
+/* RESPONSIF UNTUK HP (Biar di HP tampilannya berurutan ke bawah, tidak kekecilan) */
+@media (max-width: 600px) {
+    .bento-container {
+        grid-template-columns: 1fr; /* Jadi 1 kolom saja di HP */
+        grid-template-rows: auto;
+    }
+    .bento-tall, .bento-wide {
+        grid-row: auto;
+        grid-column: auto;
+    }
+    .bento-item {
+        height: 250px; /* Tinggi standar foto saat dibuka di HP */
+    }
+}
+
+/* GAYA JENDELA KACA 4 PETAK KHUSUS DI DALAM BLOG-CARD */
+
+/* Wadah Kusen Utama (Menggantikan bento-container bawaan) */
+.window-bento-frame {
+    width: 100%;
+    padding: 12px;
+    background: #ffffff;
+    border-bottom: 1px solid #f2eade; /* Batas halus antara foto dan teks konten */
+}
+
+/* Kisi Grid Jendela 2x2 */
+.window-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Tepat 2 kolom */
+    grid-template-rows: repeat(2, 160px);   /* Tepat 2 baris tetap simetris */
+    gap: 8px; /* Tebal palang sekat jendela */
+    background: #6d5440; /* Warna kayu palang kusen tengah */
+    border: 6px solid #6d5440; /* Bingkai luar jendela */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Petak Kaca */
+.window-bento-pane {
+    position: relative;
+    overflow: hidden;
+    background: #fffaf5;
+}
+
+.window-bento-pane img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: blur(1px) brightness(0.9); /* Efek kaca film berembun lembut di awal */
+    transition: all 0.5s ease;
+}
+
+/* Lapisan Teks dan Kilau Kaca */
+.window-bento-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: all 0.4s ease;
+}
+
+.window-bento-overlay span {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #ffffff;
+    font-size: 0.9rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    transition: all 0.4s ease;
+}
+
+/* EFEK INTERAKTIF: Saat petak jendela di-hover atau disentuh */
+.window-bento-pane:hover img {
+    filter: blur(0px) brightness(1.05); /* Kaca otomatis jernih total */
+    transform: scale(1.05);
+}
+
+.window-bento-pane:hover .window-bento-overlay {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.window-bento-pane:hover .window-bento-overlay span {
+    transform: translateY(-2px);
+    font-weight: bold;
+}
+
+/* RESPONSIVE UNTUK LAYAR HP */
+@media (max-width: 600px) {
+    .window-bento-grid {
+        grid-template-rows: repeat(2, 120px); /* Tinggi dikecilkan sedikit di HP agar ideal */
+        gap: 5px;
+        border: 4px solid #6d5440;
+    }
+    .window-bento-overlay span {
+        font-size: 0.78rem;
+    }
+}
+/* DESIGN PESAN TERAKHIR (EPILOGUE SECTION) */
+.final-words-section {
+    padding: 80px 20px;
+    background: linear-gradient(to bottom, #ffffff 0%, #fffaf5 100%); /* Efek gradasi lembut mengunci halaman */
+    border-top: 1px dashed #eee6de;
+}
+
+.final-words-container {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.final-title {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #6d5440;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.final-divider {
+    color: #d4a373;
+    font-size: 0.75rem;
+    letter-spacing: 6px;
+    margin-bottom: 35px;
+}
+
+.final-letter-content {
+    text-align: left; /* Teks rata kiri agar nyaman dibaca seperti surat asli */
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(109, 84, 64, 0.04);
+    border: 1px solid #fcfaf7;
+}
+
+.final-text {
+    font-family: 'Georgia', serif;
+    font-size: 0.98rem;
+    color: #5c4a3c;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Penekanan Khusus Kalimat Pertama */
+.highlight-text {
+    font-size: 1.08rem;
+    color: #4a3f35;
+    font-weight: 600;
+    font-style: italic;
+    border-left: 3px solid #d4a373;
+    padding-left: 12px;
+}
+
+/* Susunan List Terima Kasih */
+.thank-you-list {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.thank-you-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #fffaf5;
+    padding: 12px 16px;
+    border-radius: 12px;
+}
+
+.thank-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.thank-you-item p {
+    flex-grow: 1;           /* Membuka ruang teks agar bisa mengisi area tengah kartu */
+    text-align: center;     /* Membuat tulisan rata tengah */
+    font-family: 'Georgia', serif;
+    font-size: 0.92rem;
+    color: #5c4a3c;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.thank-you-item strong {
+    color: #4a3f35;
+}
+
+/* Tanda Tangan */
+.final-signature {
+    margin-top: 45px;
+    text-align: center;
+}
+
+.final-signature p {
+    font-size: 0.85rem;
+    color: #a39081;
+    font-style: italic;
+    margin: 0;
+}
+
+.final-signature h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1.4rem;
+    color: #4a3f35;
+    margin-top: 6px;
+    letter-spacing: 1px;
+}
+
+/* RESPONSIVE UNTUK LAYAR HP */
+@media (max-width: 600px) {
+    .final-words-section {
+        padding: 60px 15px;
+    }
+    .final-letter-content {
+        padding: 25px 20px;
+    }
+    .final-title {
+        font-size: 1.4rem;
+    }
+    .final-text {
+        font-size: 0.92rem;
+        line-height: 1.7;
+    }
+    .thank-you-item p {
+        font-size: 0.88rem;
+    }
+}
+
+/* DESIGN SESI TERIMA KASIH PRIBADI (TRI STYLE) */
+.personal-thanks-section {
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+
+.personal-thanks-card {
+    background: #ffffff !important;
+    border: 1px solid #fcf9f5 !important;
+    box-shadow: 0 15px 40px rgba(109, 84, 64, 0.05) !important;
+    padding: 40px 25px !important;
+}
+
+.personal-badge {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #d4a373;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    /* margin-bottom: 10px; */
+}
+
+.personal-title {
+    font-family: 'Georgia', serif;
+    color: #4a3f35;
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.personal-intro {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #7a6858;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 35px auto;
+}
+
+/* Susunan Grid Memo */
+.thanks-memo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.memo-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #fffaf5;
+    padding: 15px;
+    border-radius: 16px;
+    text-align: left;
+    transition: transform 0.3s ease;
+    
+    /* Tambahan Kunci: Agar posisi pita sudut menempel pas di kotak */
+    position: relative;
+    overflow: hidden; 
+}
+
+.memo-item:hover {
+    transform: translateY(-3px); /* Efek melayang tipis saat didekati */
+}
+
+/* ==========================================================================
+   TAMBAHAN: ORNAMEN PITA DI UJUNG KIRI ATAS & KANAN ATAS KOTAK
+   ========================================================================== */
+.memo-item::before,
+.memo-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 35px;
+    height: 35px;
+    pointer-events: none; /* Supaya tidak mengganggu kursor */
+}
+
+/* Pita Kiri Atas (Segitiga Lipat Emas) */
+.memo-item::before {
+    left: 0;
+    background: linear-gradient(135deg, #d4a373 50%, transparent 50%);
+}
+
+/* Pita Kanan Atas (Segitiga Lipat Emas) */
+.memo-item::after {
+    right: 0;
+    background: linear-gradient(225deg, #d4a373 50%, transparent 50%);
+}
+/* ========================================================================== */
+
+/* Frame Foto polaroid mini di dalam memo */
+.memo-photo {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.memo-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Teks Detail Memo */
+.memo-text h4 {
+    font-family: 'Georgia', serif;
+    color: #4a3f35;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.memo-text p {
+    font-family: 'Georgia', serif;
+    font-size: 0.85rem;
+    color: #6d5440;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Tanda Tangan Penutup Akhir Halaman */
+.final-personal-signature {
+    margin-top: 50px;
+    border-top: 1px dotted #e6ded4;
+    padding-top: 30px;
+}
+
+.final-personal-signature p {
+    font-size: 0.85rem;
+    color: #a39081;
+    font-style: italic;
+}
+
+.signature-name {
+    font-family: 'Georgia', serif;
+    font-size: 1.6rem;
+    color: #4a3f35;
+    margin-top: 8px;
+    letter-spacing: 1px;
+}
+
+/* RESPONSIVE LAYAR HP */
+@media (max-width: 600px) {
+    .memo-item {
+        flex-direction: column; /* Foto pindah ke atas teks saat di HP */
+        text-align: center;
+        gap: 12px;
+        padding: 20px 15px;
+    }
+    .memo-photo {
+        width: 120px;
+        height: 120px; /* Foto sedikit dibesarkan agar pas di layar tengah HP */
+    }
+}
+
+/* ATURAN POLA SEKAT BENTO: */
+
+/* Foto 1 (Kiri): Memakan baris 1 sampai baris 2 */
+.bento-tall {
+    grid-row: span 2; 
+}
+
+/* Foto 4 (Kanan Bawah): Memakan 2 kolom di kanan bawah */
+.bento-wide {
+    grid-column: span 2; 
+}
+
+/* STRUKTUR 2 GAMBAR BERJEJER (BABAK 1) */
+.frame-two-container {
+    display: flex;             /* Membuat gambar berjejer ke samping */
+    gap: 12px;                 /* Jarak antar sekat kedua foto */
+    padding: 15px 15px 0 15px; /* Jarak di dalam kotak putih */
+    background: #ffffff;
+}
+
+.frame-two-item {
+    flex: 1;                   /* Membagi ruang 50% sama rata untuk kedua foto */
+    height: 520px;             /* Tinggi foto (sedikit lebih tinggi dari 3 frame agar proporsional) */
+    overflow: hidden;
+    border-radius: 12px;       /* Sudut melengkung halus */
+    box-shadow: 0 2px 8px rgba(74, 63, 53, 0.04);
+}
+
+.frame-two-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* Menjaga foto tidak gepeng */
+    display: block;
+}
+
+/* RESPONSIF UNTUK HP */
+@media (max-width: 600px) {
+    .frame-two-container {
+        gap: 8px;
+        padding: 10px 10px 0 10px;
+    }
+    .frame-two-item {
+        height: 140px;         /* Mengurangi tinggi foto di layar HP agar pas */
+    }
+}
+
+/* STRUKTUR 3 FRAME GAMBAR BERJEJER */
+.frame-container {
+    display: flex;         /* Membuat elemen di dalamnya berjejer ke samping */
+    gap: 10px;             /* Jarak antar sekat frame foto */
+    padding: 15px 15px 0 15px; /* Memberikan jarak di dalam kartu putih */
+    background: #ffffff;
+}
+
+.frame-item {
+    flex: 1;               /* Membagi ukuran ke-3 foto secara adil dan sama rata */
+    height: 360px;         /* Mengatur tinggi frame foto (bisa disesuaikan) */
+    overflow: hidden;
+    border-radius: 10px;   /* Sudut melengkung halus untuk setiap frame */
+    box-shadow: 0 2px 8px rgba(74, 63, 53, 0.05);
+}
+
+.frame-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* Menjaga foto tetap proporsional dan tidak gepeng */
+    display: block;
+}
+
+/* RESPONSIF UNTUK HP (Agar di layar kecil fotonya tidak terlalu sempit) */
+@media (max-width: 600px) {
+    .frame-container {
+        gap: 8px;          /* Memperkecil jarak antar foto di HP */
+        padding: 10px 10px 0 10px;
+    }
+    .frame-item {
+        height: 120px;     /* Mengurangi tinggi foto agar pas di layar HP */
+    }
+}
+
+
+/* FORMASI FLEXBOX UNTUK SEGITIGA TERBALIK (3 ATAS, 2 BAWAH) */
+.achievement-flex-container {
+    display: flex;
+    flex-wrap: wrap;           /* Memungkinkan kartu turun ke baris baru jika penuh */
+    justify-content: center;   /* KUNCI: Membuat kartu di baris kedua otomatis kumpul di tengah */
+    gap: 20px;                 /* Jarak antar kartu */
+    margin-top: 25px;
+}
+
+/* Mengatur ukuran lebar kartu di desktop/layar besar */
+.achievement-flex-container .achievement-card {
+    background: #ffffff;
+    border-radius: 16px;
+    
+    /* PENTING: overflow diubah ke visible agar outline bagian dalam kelihatan rapi */
+    overflow: visible; 
+    
+    display: flex;
+    flex-direction: column;
+    
+    /* Lebar kartu asli milikmu (TIDAK BERUBAH) */
+    width: calc(33.333% - 14px); 
+    min-width: 240px; 
+
+    /* ==================================================================
+       TAMBAHAN BINGKAI PIAGAM (Aman & Tidak Merusak Lebar Kartu)
+       ================================================================== */
+    border: 1px solid #dfba9d;             /* Garis bingkai luar warna emas satin halus */
+    outline: 2px solid #ffffff;            /* Garis aksen putih di dalam bingkai */
+    outline-offset: -6px;                  /* Menarik garis putih masuk ke dalam kartu */
+    
+    /* Gabungan bayangan asli + bayangan tipis warna emas di bagian dalam */
+    box-shadow: 0 4px 15px rgba(74, 63, 53, 0.03), inset 0 0 0 5px #ffffff;
+	transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;	
+}
+
+.achievement-flex-container .achievement-card:hover {
+    transform: translateY(-6px); /* Kartu terangkat ke atas */
+    box-shadow: 0 12px 25px rgba(109, 84, 64, 0.12); /* Bayangan melebar lembut */
+    border-color: #dfba9d; /* Warna bingkai emas satinnya sedikit menggelap indah */
+}
+
+/* Mengatur area foto */
+.achievement-img-wrapper {
+    width: 100%;
+    height: 180px; 
+    overflow: hidden;
+    border-radius: 15px 15px 0 0; /* Menyesuaikan lengkungan border atas kartu */
+}
+
+.achievement-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* Mengatur area teks */
+.achievement-info {
+    padding: 20px;
+    background: #ffffff;
+    flex-grow: 1; 
+    border-radius: 0 0 15px 15px; /* Menyesuaikan lengkungan border bawah kartu */
+}
+
+.achievement-info h3 {
+    font-size: 1.1rem;
+    color: #6d5440;
+    margin-bottom: 10px;
+}
+
+.achievement-info p {
+    font-size: 0.9rem;
+    color: #8a7665;
+    line-height: 1.6;
+}
+
+/* RESPONSIVE UNTUK HP (Otomatis berurutan ke bawah agar teks & gambar tidak kekecilan) */
+@media (max-width: 768px) {
+    .achievement-flex-container .achievement-card {
+        width: 100%; /* Kartu memenuhi lebar layar HP */
+    }
+}
+
+/* 4. RANDOMNESS */
+.random-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card-mini {
+    background: #fffdfb;
+    padding: 25px;
+    border-radius: 16px;
+    border-left: 4px solid #f7d6c8;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.card-mini h4 {
+    margin-bottom: 10px;
+    color: #6d5440;
+}
+
+/* GAYA SCRAPBOOK POLAROID */
+.scrapbook-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 10px;
+    margin-top: 20px;
+}
+
+/* BINGKAI PAPAN DINDING UTAMA */
+.dinding-bingkai {
+    background-color: #faf6f0; /* Warna dasar latar belakang dinding */
+    background-image: radial-gradient(#e8dfd5 1.5px, transparent 1.5px); /* Efek tekstur bintik dinding semen halus */
+    background-size: 24px 24px;
+    
+    padding: 40px 25px;
+    border-radius: 20px;
+    
+    /* Bingkai estetik seolah papan mading atau frame foto besar di dinding */
+    border: 12px solid #ecdcc9; /* Warna bingkai kayu krem hangat */
+    outline: 2px solid #dfcdb9;  /* Garis detail luar bingkai */
+    box-shadow: 
+        inset 0 0 20px rgba(0, 0, 0, 0.05), /* Kedalaman di dalam bingkai */
+        0 15px 35px rgba(109, 84, 64, 0.1);  /* Bayangan seluruh bingkai ke luar */
+        
+    /* KUNCI PERUBAHAN: Membiarkan foto berjejer ke samping & wrap jika tidak muat */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* Jarak antar foto polaroid di dalam bingkai */
+    width: 100%; /* Memastikan bingkai melebar penuh */
+}
+
+/* Bingkai Polaroid Fisik */
+.polaroid {
+    background: #ffffff;
+    padding: 15px 15px 25px 15px; /* Bagian bawah sengaja lebih tebal untuk tempat tulisan */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important; /* Efek bayangan kertas menempel */
+    border: 1px solid #eee6de;
+    width: 260px; /* Ukuran fixed menyerupai cetakan polaroid asli */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+	position: relative; /* Kunci koordinat agar pin tidak lari */
+}
+
+.polaroid-img {
+    width: 100%;
+    height: 240px; /* Foto polaroid cenderung agak kotak/vertikal pendek */
+    overflow: hidden;
+    border: 1px solid #f5f5f5;
+}
+
+.polaroid-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Area Tulisan Deskripsi di Bawah Foto */
+.polaroid-caption {
+    padding-top: 15px;
+    text-align: left;
+}
+
+.polaroid-date {
+    font-size: 0.75rem;
+    color: #a39081;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.polaroid-text {
+    font-size: 0.88rem;
+    color: #4a3f35;
+    line-height: 1.5;
+    font-family: 'Courier New', Courier, monospace; /* Trik agar teks mirip ketikan mesin tik atau tulisan tangan */
+}
+
+/* EFEK SENI: Membuat polaroid agak miring acak agar tidak kaku */
+.polaroid-left {
+    transform: rotate(-3deg);
+}
+
+.polaroid-right {
+    transform: rotate(4deg);
+}
+
+/* Efek interaktif: saat foto disentuh/di-hover, posisinya lurus dan naik sedikit */
+.polaroid:hover {
+    transform: rotate(0deg) translateY(-8px);
+    box-shadow: 0 15px 30px rgba(74, 63, 53, 0.15);
+    z-index: 10;
+}
+
+/* RESPONSIF LAYAR HP */
+@media (max-width: 600px) {
+    .scrapbook-container {
+        gap: 25px;
+    }
+    .polaroid {
+        width: 85%; /* Menyesuaikan lebar layar HP */
+    }
+    .polaroid-left, .polaroid-right {
+        transform: rotate(0deg); /* Di HP lurus saja agar nyaman di-scroll vertikal */
+    }
+}
+
+.push-pin {
+    position: absolute;
+    top: -10px; /* Posisi pin agak nongol ke atas kertas */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    background-color: #e63946; /* Warna merah pin mading klasik estetik */
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 
+        inset -3px -3px 5px rgba(0, 0, 0, 0.2), /* Dimensi bulat pin */
+        0 4px 6px rgba(0, 0, 0, 0.15);         /* Bayangan pin jatuh ke kertas */
+}
+
+/* Jarum tusukan kecil di bawah kepala pin */
+.push-pin::after {
+    content: '';
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 6px;
+    background-color: #a3a3a3; /* Warna jarum besi logam */
+}
+
+/* Bayangan tusukan jarum tipis yang jatuh ke papan dinding */
+.push-pin::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 8px;
+    width: 6px;
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    filter: blur(1px);
+}
+
+/* DESAIN BUKU MENU KAFE REALISTIS */
+.cafe-menu-board {
+    background: #fdfbf7; /* Warna kertas vintage/menu kafe */
+    border: 2px dashed #d4a373; /* Garis putus-putus khas pinggiran menu */
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 680px;
+    margin: 30px auto;
+    box-shadow: 0 10px 30px rgba(74, 63, 53, 0.05);
+}
+
+.menu-header {
+    text-align: center;
+    font-weight: bold;
+    color: #d4a373;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+/* Baris Item Menu */
+.cafe-menu-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Foto Makanan di Menu (Kotak Kecil Estetik) */
+.menu-thumb {
+    width: 75px;
+    height: 75px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #eee6de;
+}
+
+.menu-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Info Makanan & Garis Titik-Titik Penghubung Harga */
+.menu-info {
+    flex-grow: 1;
+}
+
+.menu-title-row {
+    display: flex;
+    align-items: baseline; /* Membuat teks nama makanan dan bintang sejajar bawah */
+    gap: 8px;
+}
+
+.food-name {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #4a3f35;
+}
+
+/* TRIK CSS: Membuat titik-titik daftar menu otomatis melebar pas */
+.menu-line {
+    flex-grow: 1;
+    border-bottom: 2px dotted #e3dec9;
+    margin: 0 5px;
+}
+
+.food-price {
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.food-desc {
+    font-size: 0.88rem;
+    color: #7a6858;
+    line-height: 1.5;
+    margin-top: 5px;
+    font-style: italic; /* Bergaya deskripsi menu gourmet */
+}
+
+/* Catatan Kaki Menu */
+.menu-footer {
+    text-align: center;
+    border-top: 1px solid #eee6de;
+    padding-top: 20px;
+    margin-top: 25px;
+}
+
+.menu-footer p {
+    font-size: 0.85rem;
+    color: #a39081;
+}
+
+/* RESPONSIF UNTUK HP */
+@media (max-width: 600px) {
+    .cafe-menu-board {
+        padding: 20px 15px;
+    }
+    .cafe-menu-item {
+        flex-direction: column; /* Foto pindah ke atas di layar HP kecil */
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+    .menu-title-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+    .menu-line {
+        display: none; /* Hilangkan garis titik-titik di HP agar tulisan tidak tumpang tindih */
+    }
+}
+
+/* 5. YOUR PERSONAL ACHIEVEMENTS */
+.highlight-card {
+    background: linear-gradient(to bottom right, #ffffff, #fff9f6);
+    border-right: 4px solid #b55b4c;
+}
+
+.achievement-list {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.achievement-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+}
+
+.achievement-list li::before {
+    content: "⭐";
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+/* CONTAINER UTAMA BENTO DEKSTOP (PASTI KOTAK SEMPURNA) */
+.photo-collage-container {
+    display: grid;
+    /* Laptop/Desktop: Mengunci tepat 4 kolom sama rata */
+    grid-template-columns: repeat(4, 1fr);
+    /* Mengunci tepat 2 baris, masing-masing tinggi 160px (Total tinggi kolase fixed 320px) */
+    grid-template-rows: repeat(2, 160px); 
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+/* KOTAK BENTO ASLI (UKURAN TETAP SAMA TIDAK BERUBAH) */
+.collage-item {
+    border-radius: 16px; /* Sudut melengkung halus khas Bento */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    
+    /* KUNCI EFEK FOTO: Memberikan bingkai kertas foto fisik di dalam kotak bento */
+    background: #ffffff; /* Warna putih kertas foto */
+    padding: 8px 8px 16px 8px; /* Padding bawah lebih tebal menyerupai cetakan polaroid/instax asli */
+    border: 1px solid #f0e6df;
+    
+    /* Efek transisi melenting lembut saat di-hover */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+/* Kunci Ukuran: Foto dengan kelas ini otomatis memakan jatah 2 kolom ke samping */
+.bento-lebar {
+    grid-column: span 2;
+}
+
+/* Sifat foto di dalam bingkai bento */
+.collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Menjamin foto terpotong rapi, tidak gepeng */
+    display: block;
+    border-radius: 8px; /* Sudut melengkung tipis khusus untuk gambar di dalam kertas */
+    transition: transform 0.3s ease;
+}
+
+/* EFEK INTERAKTIF BARU: Kotak Bento & Fotonya Ikut Bereaksi Estetik */
+.collage-item:hover {
+    transform: scale(1.03) translateY(-3px); /* Kotak bento sedikit terangkat maju */
+    box-shadow: 0 10px 20px rgba(109, 84, 64, 0.12); /* Bayangan mading lebih dalam */
+    z-index: 5; /* Memastikan kotak yang di-hover berada di lapisan terdepan */
+}
+
+.collage-item:hover img {
+    transform: scale(1.02); /* Gambar di dalam bingkai sedikit nge-zoom halus */
+}
+
+/* Teks Deskripsi di Bawah Kolase */
+.biggest-description {
+    padding: 15px 10px;
+    text-align: center;
+}
+
+/* Menambahkan aksen bintang penghargaan di atas judul biar makin manis */
+.biggest-description::before {
+    display: block;
+    color: #d4a373;
+    font-size: 0.85rem;
+    letter-spacing: 6px;
+    margin-bottom: 12px;
+}
+
+.biggest-description h3 {
+    font-size: 1.3rem;
+    color: #6d5440;
+    margin-bottom: 12px;
+}
+
+.biggest-description p {
+    font-size: 0.95rem;
+    color: #5c4a3c;
+    line-height: 1.7;
+}
+
+/* CONTAINER UNTUK MEDALI BESAR */
+.medal-badge-container {
+    text-align: center;
+    margin-bottom: 20px; /* Jarak antara medali ke judul di bawahnya */
+    width: 100%;
+}
+
+/* PENGATURAN GAMBAR MEDALI UTAMA */
+.biggest-medal-img {
+    width: 130px;        /* Ukuran lebar medali (bisa kamu naikkan ke 150px jika ingin lebih besar) */
+    height: auto;
+    object-fit: contain;
+    
+    /* Efek bayangan jatuh yang mewah di bawah medali */
+    filter: drop-shadow(0 8px 20px rgba(212, 163, 115, 0.35));
+    
+    /* Animasi melayang lembut agar terasa hidup */
+    animation: medalFloatLarge 4s ease-in-out infinite;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* EFEK SAAT KURSOR DEKAT / HOVER */
+.biggest-medal-img:hover {
+    transform: scale(1.1) rotate(5deg); /* Sedikit membesar dan miring estetik */
+    filter: drop-shadow(0 12px 25px rgba(212, 163, 115, 0.5));
+}
+
+/* ANIMASI MELAYANG LEMBUT (SLOW MOTION FLOATING) */
+@keyframes medalFloatLarge {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px); /* Medali bergerak naik perlahan sejauh 8px */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIF UNTUK HP (Biar pas dibuka di HP tidak terlalu sempit) */
+@media (max-width: 768px) {
+    .photo-collage-container {
+        /* HP: Otomatis berubah jadi 2 kolom ke bawah */
+        grid-template-columns: repeat(2, 1fr);
+        /* 8 foto dibagi 2 kolom = mengunci tepat 4 baris ke bawah */
+        grid-template-rows: repeat(4, 120px); 
+        gap: 8px;
+    }
+    
+    /* Di HP, hilangkan efek melebar desktop agar kembali jadi kotak proporsional */
+    .bento-lebar {
+        grid-column: auto;
+    }
+    
+    /* Sesuaikan padding foto kertas di layar HP agar tetap seimbang */
+    .collage-item {
+        padding: 6px 6px 12px 6px;
+    }
+}
+
+/* DESIGN ENVELOPE ANIMASI 3D */
+.envelope-wrapper {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 20px;
+	margin-bottom:40px;
+}
+
+.envelope {
+    position: relative;
+    width: 280px;
+    height: 180px;
+    background: #eddcd2; /* Warna badan luar amplop */
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 15px 35px rgba(109, 84, 64, 0.1);
+    cursor: pointer;
+}
+
+/* Tutup Atas Segetiga Amplop */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 100px solid #ddc4b4; /* Warna penutup atas */
+    transform-origin: top;
+    transition: transform 0.4s ease 0.2s, z-index 0.2s ease 0.2s;
+    z-index: 4;
+}
+
+/* Lipatan Depan Kanan-Kiri-Bawah Amplop */
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 140px solid #f0e2d7;
+    border-right: 140px solid #f0e2d7;
+    border-bottom: 90px solid #e8d3c4;
+    border-radius: 0 0 12px 12px;
+    z-index: 3;
+}
+
+/* Kertas Surat di Dalam */
+.letter-inside {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    width: 250px;
+    height: 160px;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.02);
+    transition: transform 0.5s ease;
+    z-index: 2;
+    overflow-y: auto; /* Agar teks panjang bisa di-scroll di dalam surat jika layarnya kecil */
+}
+
+.letter-paper {
+    text-align: center;
+}
+
+.letter-heart {
+    color: #d4a373;
+    font-size: 0.9rem;
+}
+
+.letter-paper h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    color: #4a3f35;
+    margin: 5px 0 10px 0;
+}
+
+.letter-paper p {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: #5c4a3c;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.letter-signature {
+    text-align: right !important;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* KONDISI SAAT ENVELOPE DI-KLIK (OPENED) VIA JAVASCRIPT */
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1; /* Pindah ke belakang surat */
+}
+
+.envelope.open .letter-inside {
+    transform: translateY(-160px); /* Surat naik ke atas keluar dari amplop */
+    height: 280px; /* Memanjang setelah keluar */
+    z-index: 5;    /* Maju ke paling depan agar bisa dibaca jelas */
+    box-shadow: 0 10px 30px rgba(109, 84, 64, 0.15);
+}
+
+
+/* 6. WISHES */
+.final-card {
+	margin-top:40px;
+    background: #fff3ed;
+    border: 1px dashed #e8bca6;
+}
+
+.wishes-text {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #5c4a3c;
+    margin: 20px 0;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #b55b4c;
+    margin-top: 20px;
+}
+
+/* ==========================================================================
+   GAYA KATA-KATA PERPISAHAN AKHIR CHAPTER 42
+   ========================================================================== */
+
+.chapter-farewell-box {
+    max-width: 650px;
+    margin: 50px auto 10px auto; /* Memberi jarak atas yang pas setelah baris kartu */
+    text-align: center;
+    padding: 25px 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    
+    /* Bingkai tipis hangat yang senada dengan mading */
+    border: 1px dashed #dfba9d; 
+    box-shadow: 0 4px 10px rgba(109, 84, 64, 0.02);
+}
+
+/* Pembatas Simbol Medal Atas Teks */
+.farewell-divider {
+    font-size: 1.2rem;
+    color: #dfba9d;
+    margin-bottom: 12px;
+    letter-spacing: 4px;
+}
+
+/* Pengaturan Teks Kutipan */
+.farewell-text {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-style: italic !important;
+    font-size: 1.25rem !important;
+    line-height: 1.7 !important;
+    color: #6d5440 !important;
+    margin: 0;
+}
+
+/* Responsif untuk HP agar teks tidak terlalu rapat */
+@media (max-width: 768px) {
+    .chapter-farewell-box {
+        margin: 40px 10px 10px 10px;
+        padding: 20px 15px;
+    }
+    .farewell-text {
+        font-size: 1.15rem !important;
+    }
+}
+
+/* ==========================================================================
+   GAYA PENUTUP: SIMBOLIS PERGANTIAN CHAPTER (BENTUK JURNAL BUKU)
+   ========================================================================== */
+
+.chapter-closing-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background-color: transparent; /* Biar menyatu dengan background mading utama */
+}
+
+/* Wadah Utama Buku/Jurnal */
+.chapter-container {
+    display: flex;
+    max-width: 800px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(109, 84, 64, 0.1);
+    border: 1px solid #f2eade;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Gaya Dasar untuk Setiap Halaman Buku */
+.chapter-page {
+    flex: 1;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* --- HALAMAN KIRI (CHAPTER 42: SELESAI/TUTUP) --- */
+.page-old {
+    background-color: #fcfaf7; /* Warna kertas agak usang/vintage */
+    filter: grayscale(20%);     /* Memberikan efek masa lalu yang syahdu */
+}
+
+.page-old h2 {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 2.4rem;
+    color: #8c7a6b;
+    text-decoration: line-through; /* Efek simbolis coret halus menandakan selesai */
+    text-decoration-color: #d4a373;
+    margin: 10px 0;
+}
+
+.page-old p {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 300;
+    color: #a39284 !important;
+    font-style: italic;
+    text-align: center !important;
+}
+
+/* --- HALAMAN KANAN (CHAPTER 43: BARU/BERSINAR) --- */
+.page-new {
+    background-color: #ffffff; /* Lebih terang benderang */
+}
+
+.page-new h2 {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 2.8rem;
+    color: #4a3f35;
+    margin: 10px 0;
+    animation: glowText 2s ease-in-out infinite alternate; /* Efek teks bersinar lembut */
+}
+
+.page-new .wishes-text {
+    font-family: 'Cormorant Garamond', serif !important; /* Diubah ke Serif biar puitis */
+    font-style: italic !important;
+    font-size: 1.15rem !important;
+    font-weight: 400 !important;
+    color: #6d5440 !important;
+    text-align: center !important;
+    line-height: 1.6 !important;
+}
+
+/* --- ORNAMEN EMBLEM (BADGE) DI ATAS TEXT --- */
+.chapter-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.badge-closed {
+    background-color: #f0e6df;
+    color: #a39284;
+}
+
+.badge-welcome {
+    background-color: #eecdab; /* Warna emas pastel hangat */
+    color: #5c4a3c;
+    box-shadow: 0 2px 8px rgba(238, 205, 171, 0.4);
+}
+
+/* --- GARIS TENGAH JILID BUKU (SPINE) --- */
+.chapter-spine {
+    width: 2px;
+    background: linear-gradient(to bottom, #ecdcc9, #dfcdb9, #ecdcc9);
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Efek Bayangan lipatan buku di tengah */
+.chapter-spine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: 15px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(109, 84, 64, 0.03));
+}
+
+.chapter-spine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -15px;
+    width: 15px;
+    height: 100%;
+    background: linear-gradient(to left, transparent, rgba(109, 84, 64, 0.03));
+}
+
+/* Aksen Kilau Bintang di Akhir Teks */
+.wedding-sparkle {
+    color: #dfba9d;
+    font-size: 0.8rem;
+	text-align:Center;
+    margin-top: 15px;
+    letter-spacing: 4px;
+}
+
+/* Animasi Teks Menyala Halus untuk Chapter Baru */
+@keyframes glowText {
+    from {
+        text-shadow: 0 0 4px rgba(223, 186, 157, 0.1);
+    }
+    to {
+        text-shadow: 0 0 12px rgba(223, 186, 157, 0.4);
+    }
+}
+
+/* --- RESPONSIF UNTUK HP --- */
+@media (max-width: 768px) {
+    .chapter-container {
+        flex-direction: column; /* Di HP berubah susunan bertumpuk atas-bawah */
+    }
+    .chapter-page {
+        padding: 40px 25px;
+    }
+    .chapter-spine {
+        width: 100%;
+        height: 2px; /* Jilid buku berubah jadi horizontal */
+    }
+    .chapter-spine::before, .chapter-spine::after {
+        display: none; /* Hilangkan bayangan vertikal di HP */
+    }
+}
+
+/* ==========================================================================
+   GAYA POST-CREDIT: BEHIND THE SCENE (FILM STRIP EFFECT)
+   ========================================================================== */
+
+.bts-section {
+    margin-top: 50px;
+    padding: 40px 20px;
+    background-color: #1a1512; /* Warna latar belakang hitam arang hangat khas bioskop/kamar gelap film */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+/* Header Text BTS */
+.bts-title-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.bts-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #dfba9d;
+    background: rgba(223, 186, 157, 0.1);
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(223, 186, 157, 0.2);
+}
+
+.bts-title {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 2.2rem !important;
+    color: #ffffff !important;
+    margin: 12px 0 5px 0 !important;
+}
+
+.bts-subtitle {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 300;
+    font-size: 0.9rem !important;
+    color: #baae14;
+    color: #a39284 !important;
+    text-align: center !important;
+}
+
+/* Container Gulungan Film */
+.film-strip-container {
+    width: 100%;
+    overflow-x: auto; /* Mengizinkan geser kanan-kiri di HP */
+    padding: 20px 0;
+    scrollbar-width: thin;
+    scrollbar-color: #dfba9d transparent;
+}
+
+/* Jalur Pita Film */
+.film-strip {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: #110d0b; /* Warna hitam pekat pita seluloid */
+    border-top: 4px dashed #dfba9d; /* Lubang kotak gerigi film bagian atas */
+    border-bottom: 4px dashed #dfba9d; /* Lubang kotak gerigi film bagian bawah */
+    width: max-content;
+}
+
+/* Bingkai Per Kotak Foto */
+.film-frame {
+    width: 240px;
+    background: #261f1c;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.film-frame img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: sepia(15%) contrast(105%); /* Efek warna film analog cinematic */
+    transition: filter 0.3s ease;
+}
+
+/* Keterangan Foto di Bawah Film */
+.film-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #dfcdb9;
+    text-align: center;
+    margin-top: 8px;
+    
+    /* KUNCI: Diubah ke normal agar teks otomatis turun ke bawah saat mentok */
+    white-space: normal; 
+    
+    /* KUNCI TAMBAHAN: Mengizinkan kata yang sangat panjang dipotong jika space habis */
+    word-wrap: break-word; 
+    
+    /* overflow: hidden; boleh dihapus atau dibiarkan saja sekarang */
+}
+
+/* Efek Interaktif saat Foto Didekati Cursor */
+.film-frame:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(212, 163, 115, 0.2);
+    background: #362b27;
+}
+
+.film-frame:hover img {
+    filter: sepia(0%) contrast(100%); /* Warna foto kembali normal cerah saat dilihat */
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.85rem;
+    color: #aa9687;
+}
+
+/* ANIMATION EFFECT */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* RESPONSIVE LAYOUT (FOR SMARTPHONES) */
+@media (max-width: 600px) {
+    .hero-title { font-size: 3rem; }
+    .card { padding: 25px 20px; }
+    .blog-img-placeholder { height: 180px; }
+}
