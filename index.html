@@ -837,6 +837,14 @@ function triggerCelebration() {
         }
     }());
 }
+// Ganti 'rahasiahariini' dengan password yang kamu inginkan
+    var password = "vira123";
+    var input = prompt("Halaman ini dilindungi. Masukkan password untuk masuk:");
+    
+    if (input !== password) {
+        alert("Password salah! Kamu tidak bisa mengakses halaman ini.");
+        window.location.href = "https://www.google.com"; // Tendang ke Google kalau salah
+    }
     </script>
 
 </body>
