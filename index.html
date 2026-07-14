@@ -11,9 +11,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 	<!-- LIBRARY UNTUK EFEK HUJAN KONFETI -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<!-- Audio Efek Suara Saat Hover Foto Profil -->
 </head>
 <body>
-
+	<audio id="hoverSound">
+		<source src="Sound/Party Popper.mp3" type="audio/mp3">
+	</audio>
+	<div id="blossom-container"></div>
     <header class="hero-section">
         <div class="hero-content">
             <p class="hero-subtitle">Hari ini adalah harimu</p>
@@ -39,9 +43,10 @@
                 
                 <!-- FOTO UTAMA DI TENGAH -->
                 <div class="top-profile-container">
-                    <div class="profile-frame">
-                        <img src="images/Birthday.jpg" alt="Happy Birthday Princess">
-                    </div>
+                    <!-- Ubah kode frame fotomu menjadi seperti ini -->
+					<div class="profile-frame" onmouseenter="playHoverSound()">
+						<img src="images/Birthday.jpg" alt="Happy Birthday Princess">
+					</div>
                 </div>
 
                 <!-- Isi Surat dengan Font Tulisan Tangan Estetik -->
@@ -68,6 +73,20 @@
         </section>
 		
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+		
+		<div class="unlock-container" id="containerTombol">
+            <button class="unlock-btn" onclick="bukaSeluruhHalaman()">
+                <span>Buka Lembaran Kenangan</span>
+                <span class="btn-sparkle">✨</span>
+            </button>
+        </div>
+		
+<div class="halaman-tersembunyi" id="kontenRahasia"> <!-- Hide halaman di mulai -->
+		
+		<audio id="backgroundMusic" loop>
+			<source src="music/Make It Right.mp3" type="audio/mp3">
+			Browser kamu tidak mendukung pemutaran musik.
+		</audio>
 		
         <section class="section journey-section">
             <h2 class="section-title">Our Journey Together</h2>
@@ -181,7 +200,6 @@
             </div>
         </article>
 				
-            </div>
         </section>
 		
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
@@ -509,6 +527,7 @@
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 		
 		 <section class="section wishes-section">
+		 <h2 class="section-title">Gratitudes</h2>
             <div class="card text-center final-card">
                 <h2>Ungkapan Rasa Terima Kasih</h2>
 				<p class="wishes-text">Sebelum Chapter 42-mu ini ditutup, Izinkan gue untuk mengucapkan rasa terima kasih yang mewakili seluruh insan, yang mungkin belum sempat terucap langsung</p>
@@ -620,7 +639,7 @@
 		
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 
-		</div> <div class="chapter-farewell-box">
+		<div class="chapter-farewell-box">
 			<div class="farewell-divider">✦ 🏅 ✦</div>
 			<p class="farewell-text">
 				Dengan ini berakhirlah sudah chapter kehidupanmu di 42, saatnya menyambut chapter 43 dengan hati yang lebih tangguh, senyuman yang lebih cerah, dan sejuta harapan baru. Terima kasih sudah berjalan dan berjuang sejauh ini Tri.
@@ -661,35 +680,60 @@
 
 <div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 	
-			<!-- 4.8 INTERACTIVE ENVELOPE WISHES -->
-        <section class="section wishes-section">
-            <h2 class="section-title">A Special Letter For You</h2>
-            <p class="section-subtitle">Ada satu surat terakhir yang sengaja gue simpan di dalam amplop ini. Klik untuk membuka ya.</p>
-            
-            <div class="envelope-wrapper">
-                <div class="envelope" id="loveEnvelope" onclick="openEnvelope()">
-                    <div class="envelope-flap"></div>
-                    <div class="envelope-body"></div>
-                    
-                    <!-- Lembaran Surat di Dalam Amplop -->
-                    <div class="letter-inside">
-                        <div class="letter-paper">
-                            <span class="letter-heart">♥</span>
-                            <h3>Dear Astri,</h3>
-                            <p>
-                                Selamat tanggal lahir Astri Fitriani.<br><br>Melalui surat kecil digital ini, gue cuma mau bilang kalau gue bersyukur banget atas kehadiran lu di hidup ini.
-                            </p>
-                            <p>
-                                Semoga di usia yang baru ini, lu selalu diberikan kesehatan, kebahagiaan yang melimpah, dan ketenangan hati dalam setiap langkah.<br><br> Setiap mimpi atau target yang lagi lu kejar, doa gue selalu menyertai.<br><br>Dan Apapun yang terjadi di depan nanti, ingat ya kalau lu selalu punya gue yang siap mendukungmu.
-                            </p>
-                            <p>
-                                Happy 43rd Birthday,<br>Astri Fitriani.<br> Tetap jadi diri lu yang luar biasa ya! 🤍
-                            </p>
+			<div class="combined-surprise-border">
+
+            <section class="section wishes-section" style="margin-top: 0; padding-top: 20px;">
+                <h2 class="section-title">A Special Letter & Surprise For You</h2>
+                <p class="section-subtitle">Ada satu surat dan kejutan terakhir yang sengaja gue simpan di dalam amplop ini. Klik untuk membuka ya.</p>
+                
+                <div class="envelope-wrapper">
+                    <div class="envelope" id="loveEnvelope" onclick="openEnvelope()">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body"></div>
+                        
+                        <div class="letter-inside">
+                            <div class="letter-paper">
+                                <span class="letter-heart">♥</span>
+                                <h3>Dear Astri,</h3>
+                                <p>
+                                    Selamat tanggal lahir Astri Fitriani.<br><br>Melalui surat kecil digital ini, gue cuma mau billing kalau gue bersyukur banget atas kehadiran lu di hidup ini.
+                                </p>
+                                <p>
+                                    Semoga di usia yang baru ini, lu selalu diberikan kesehatan, kebahagiaan yang melimpah, dan ketenangan hati dalam setiap langkah.<br><br> Setiap mimpi atau target yang lagi lu kejar, doa gue selalu menyertai.<br><br>Dan Apapun yang terjadi di depan nanti, ingat ya kalau lu selalu punya gue yang siap mendukungmu.
+                                </p>
+                                <p>
+                                    Happy 43rd Birthday,<br>Astri Fitriani.<br> Tetap jadi diri lu yang luar biasa ya! 🤍
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
+            
+            <div class="surprise-section" style="margin-top: 40px; margin-bottom: 20px;">
+                
+                <div class="gift-box-trigger" id="giftTrigger" onclick="openSurpriseVideo()">
+                    <div class="gift-ribbon-top"></div>
+                    <div class="gift-icon">🎁</div>
+                    <h3>Ada satu kejutan terakhir untukmu...</h3>
+                    <p>Klik kado ini untuk membukanya</p>
+                </div>
+
+                <div class="video-panel-box d-none" id="videoPanel">
+                    <div class="video-frame-border">
+                        <video id="birthdayVideo" controls poster="images/Achievement 6.jpg">
+                            <source src="images/Ucapan.mp4" type="video/mp4">
+                            Browser kamu tidak mendukung pemutaran video ini.
+                        </video>
+                    </div>
+                    <div class="video-caption">
+                        <h4>Selamat Ulang Tahun! 🎂</h4>
+                        <p>Semoga suka dengan video ucapan sederhana yang aku buat ini ya...</p>
+                    </div>
+                </div>
             </div>
-        </section>
+
+        </div>
 		
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 		
@@ -719,17 +763,17 @@
             
             <div class="film-frame">
                 <img src="images/BTS 1.jpeg" alt="Project Start">
-                <div class="film-caption">Day 1 (30/06/2026): <br>Start project.<br>Cari referensi ide buat bikin web nya.</div>
+                <div class="film-caption">Day 1 (30/06/2026): <br>Start project.<br>Cari referensi ide buat bikin web nya. Ada beberapa opsi waktu itu, pakai Wordpress, Notion, Wix dan beberapa opsi lainnya. Tools-tools itu sebenarnya praktis banget buat bikin web, tapi karena opsi customnya terbatas akahirnya mutusin buat bikin sendiri manual coding.</div>
             </div>
 
             <div class="film-frame">
                 <img src="images/BTS 2.jpeg" alt="Concept">
-                <div class="film-caption">Day 2 (01/07/2026): <br>Bikin konsep di ruang 5.1.</div>
+                <div class="film-caption">Day 2 (01/07/2026): <br>Bikin konsep di ruang 5.1.<br>Waktu itu awalnya cuma kepikiran untuk bikin kartu ucapan online aja yang di scan pakai barcode. Tapi ya jiwa perfeksionis gue keluar, ngerasa kurang banget jadi akhirnya bikin deh web ini.<br> Hal utama yang mau gue ekspresikan disini adalah rasa syukur, bangga, dan happy bisa kenal lu Tri dan bisa terus menjalin hubungan baik bersama.</div>
             </div>
 
             <div class="film-frame">
                 <img src="images/BTS 3.jpeg" alt="Web Dev 1">
-                <div class="film-caption">Day 3 (02/07/2026): <br>Bikin kerangka web awal, baru kepikiran untuk buat kartu ucapan sama "Our Journey" dan "Your Achievements".</div>
+                <div class="film-caption">Day 3 (02/07/2026): <br>Bikin kerangka web awal, baru kepikiran untuk buat kartu ucapan sama "Our Journey" dan "Your Achievements". Gue pengen bisa menggambarkan perjalaan kita bersama dan remind apa yang sudah lu capai di hidup lu, karena kadang kita suka lupa kalau kita sudah melakukan hal-hal hebat yang kita sendiri tidak sadari.	</div>
             </div>
 
             <div class="film-frame">
@@ -738,23 +782,60 @@
             </div>
 			
 			<div class="film-frame">
-                <img src="images/bts 5.jpeg" alt="Sick 1">
-                <div class="film-caption">Day 5 (04/07/2026): <br>Sakit, bed rest total.</div>
+                <img src="images/BTS 5.jpeg" alt="Sick 1">
+                <div class="film-caption">Day 5 (04/07/2026): <br>Sakit, bed rest total. Sarapan roti meses dan teh madu.</div>
             </div>
 			
 			<div class="film-frame">
-                <img src="images/bts 6.jpeg" alt="Sick 1">
-                <div class="film-caption">Day 6 (05/07/2026): <br>Masih sakit, belum bisa lanjut.</div>
+                <img src="images/BTS 6.jpeg" alt="Sick 2">
+                <div class="film-caption">Day 6 (05/07/2026): <br>Masih sakit, belum bisa lanjut. Itu btw kucing gue si Joki, kalau gue lagi sakit entah kenapa dia suka tiba-tiba manja ke gue. Pengen tidur disebelah gue.</div>
             </div>
 			
 			<div class="film-frame">
-                <img src="images/bts 7.jpeg" alt="Sick 1">
-                <div class="film-caption">Day 7 (06/07/2026): <br>Closing Apolo dan badan masih sakit, tapi cicil proses dev.<br>Nambahin bagian "the Birthday Cafe Menu". Ngumpulin foto foto makanannya. Posisi di ruang meeting Kulintang</div>
+                <img src="images/BTS 7.jpeg" alt="Video Take">
+                <div class="film-caption">Day 7 (06/07/2026): <br>Hari ini gue pulang cepet, buat take video ucapan ulang tahun.<br>Mumpung rumah lagi kosong hehehe, suara gue disini agak kedengeran bindeng ya karena memang gue masih dalam kondisi sakit hari itu.</div>
+            </div>
+			
+			<div class="film-frame">
+                <img src="images/BTS 8.jpeg" alt="Dissapointment">
+                <div class="film-caption">Day 8 (07/07/2026): <br>Ingat tidak, hari ini lu lagi kecewa sama tim lu karena tidak ada ditempat saat lu balik dari PIK dengan alasan ingin buat video ucapan ulang tahun buat lu.<br>Sejujurnya, di hari yang sama dan waktu yang sama, gue juga lagi marah sama tim gue juga hahaha.<br>Akibat marah itu, tensi gue sempet naik. Ini tensi gue di jam 17.00an, pas banget di waktu lu cerita dan izin pamit pulang</div>
+            </div>
+			
+			<div class="film-frame">
+                <img src="images/BTS 9.jpeg" alt="Closing">
+                <div class="film-caption">Day 9 (08/07/2026): <br>Closing Apolo dan badan masih sakit, tapi cicil proses dev.<br>Nambahin bagian "the Birthday Cafe Menu". Ngumpulin foto foto makanannya. Posisi di ruang meeting Kulintang</div>
+            </div>
+			
+			<div class="film-frame">
+                <img src="images/BTS 10.jpeg" alt="Team">
+                <div class="film-caption">Day 10 (09/07/2026): <br>Lagi disibukan sama urusan pengangkatan kontrak tetap Farid sambil cicil progress web. Bikin "Random Snaps of You". Terinspirasi dari beberapa foto-foto lu yang ada di gallery gue, sayang banget nggak dipakai hehe. Jadi konsepnya pengen memberikan kesan dan komentar pendapat gue dari foto itu, sekalian memuji kemanisan dan kecantikan lu hahaha.</div>
+            </div>
+			
+			<div class="film-frame">
+                <img src="images/BTS 11.jpeg" alt="Chaos">
+                <div class="film-caption">Day 11 (10/07/2026): <br>Hari ini chaos banget, banyak kerjaan dadakan yang harus dikejar malam itu juga. Tapi hari ini tetep ada progress dong, walaupun cuma nambahin musik di background doang hehe.<br><br> Gue pilih lagu "Make it Right - BTS" alasannya karena lu suka BTS dan karena secara lirik lagunya masuk aja sama isi hati gue ke lu. Walaupun pesan lagu sebenarnya adalah rasa syukur BTS terhadap Army, tapi kalau murni ambil pesan di liriknya gue pikir masih relate sama rasa syukur gue terhadap keberadaan lu.</div>
+            </div>
+			
+			<div class="film-frame">
+                <img src="images/BTS 12.jpeg" alt="Rehat 1">
+                <div class="film-caption">Day 12 (11/07/2026): <br>Izin rehat dulu ya hari ini. Pekerjaan kantor lagi lucu-lucu nya kemarin, jadi pengen me time dulu mencari kesunyian pikiran.<br>Ini gue ke Senayan buat lari dan setelahnya duduk di lapangan hijau disana sambil baca buku.</div>
+            </div>
+			
+			<div class="film-frame">
+                <img src="images/BTS 13.jpeg" alt="Rehat 2">
+                <div class="film-caption">Day 13 (12/07/2026): <br>Rehat lagi, kumpul sama temen-temen SMP. Ini sebelum berangkat, tadinya mau kirim foto ini sebelum berangkat, cuma karena kacanya burem nggak jadi deh hahaha</div>
+            </div>
+			
+			<div class="film-frame">
+                <img src="images/BTS 14.jpeg" alt="Lembur Malam Sebelumnya">
+                <div class="film-caption">Day 14 (13/07/2026): <br>Kemarin malam tiba-tiba ada ide buat bikin surprise box sama design buku penanda pergantian chapter hidup ini. Lagi cemerlang idenya hahaha.<br>Tadiya video ucapan ulang tahunnya pengen gue taruh di paling atas sebagai pembuka, eh justru malah jadi penutup. Mikir nya sih supaya lu nggak expect aja ternyata ada video di ujung web, ketimbang kalau ditaruh di awal malah jadi canggung hahaha</div>
             </div>
 
         </div>
     </div>
 </section>
+
+</div> <!-- Hide halaman selesai -->
 
     </main>
 
@@ -764,6 +845,123 @@
 
 <!-- SCRIPT LOGIKA UNTUK KUPON DAN AMPLOP INTERAKTIF -->
     <script>
+    // ==========================================================================
+    // 1. LOGIKA UTAMA: TOMBOL BUKA LEMBARAN KENANGAN
+    // ==========================================================================
+    function bukaSeluruhHalaman() {
+    var tombol = document.getElementById('containerTombol');
+    var konten = document.getElementById('kontenRahasia');
+    var musik = document.getElementById('backgroundMusic');
+
+    // 1. Putar musik latar
+    if (musik) {
+        musik.volume = 0.4;
+        musik.play().catch(function(e) { console.log("Autoplay tertahan:", e); });
+    }
+
+    // 2. NYALAKAN ANIMASI BUNGA JATUH (Bertahan selamanya)
+    startBlossomAnimation();
+
+    // 3. Munculkan halaman bawah
+    konten.classList.add('buka-semua');
+    setTimeout(function() {
+        konten.classList.add('efek-muncul');
+        window.scrollBy({ top: 250, behavior: 'smooth' });
+    }, 50);
+
+    // 4. Hilangkan tombol utama
+    tombol.style.display = 'none';
+}
+
+// ==========================================================================
+// MESIN PEMBUAT KELOPAK BUNGA OTOMATIS (DENGAN UKURAN & KECEPATAN ACAK)
+// ==========================================================================
+function startBlossomAnimation() {
+    var container = document.getElementById('blossom-container');
+    if (!container) return;
+
+    // Buat kelopak bunga baru setiap 300 milidetik
+    setInterval(function() {
+        var petal = document.createElement('div');
+        petal.classList.add('petal');
+
+        // Mengacak posisi horizontal awal bunga (dari kiri 0% sampai kanan 100% layar)
+        petal.style.left = Math.random() * window.innerWidth + 'px';
+
+        // Mengacak ukuran kelopak bunga (antara 8px sampai 15px) agar lebih natural
+        var size = (Math.random() * 7) + 8;
+        petal.style.width = size + 'px';
+        petal.style.height = size + 'px';
+
+        // Mengacak durasi jatuh bunga (antara 4 sampai 8 detik per kelopak)
+        petal.style.animationDuration = (Math.random() * 4) + 4 + 's';
+
+        // Mengacak jeda mulai kemunculan bunga
+        petal.style.animationDelay = Math.random() * 2 + 's';
+
+        container.appendChild(petal);
+
+        // Hapus elemen kelopak bunga yang sudah jatuh ke bawah agar RAM komputer/HP tidak jebol
+        setTimeout(function() {
+            petal.remove();
+        }, 8000);
+
+    }, 300); // Angka 300 ini menentukan kerapatan bunga (makin kecil makin lebat bunganya)
+}
+
+    // ==========================================================================
+    // 2. LOGIKA KEJUTAN KADO & SINKRONISASI AUDIO / VIDEO
+    // ==========================================================================
+    function openSurpriseVideo() {
+        var gift = document.getElementById('giftTrigger');
+        var panel = document.getElementById('videoPanel');
+        var video = document.getElementById('birthdayVideo');
+        var musik = document.getElementById('backgroundMusic');
+
+        // Hilangkan kado dan munculkan panel video ucapan
+        gift.classList.add('d-none');
+        panel.classList.remove('d-none');
+
+        setTimeout(function() {
+            panel.classList.add('show');
+            
+            // Otomatis putar video kejutan
+            if (video) {
+                video.play();
+                
+                // KUNCI: Musik latar langsung otomatis pause saat video mulai berputar
+                if (musik) {
+                    musik.pause();
+                }
+            }
+        }, 50);
+    }
+
+    // ==========================================================================
+    // 3. EVENT LISTENER: MENJAGA LAGU AGAR TIDAK TABRAKAN DENGAN VIDEO
+    // ==========================================================================
+    document.addEventListener("DOMContentLoaded", function() {
+        var video = document.getElementById('birthdayVideo');
+        var musik = document.getElementById('backgroundMusic');
+
+        if (video && musik) {
+            
+            // JIKA VIDEO DI-PLAY MANUVAL (Astri tekan play lagi di video) -> Musik Pause
+            video.addEventListener('play', function() {
+                musik.pause();
+            });
+
+            // JIKA VIDEO DI-PAUSE (Astri pause video di tengah jalan) -> Musik Play Kembali
+            video.addEventListener('pause', function() {
+                musik.play().catch(function(e) { console.log(e); });
+            });
+
+            // JIKA VIDEO SELESAI (Video ucapan habis) -> Musik Otomatis Play Kembali
+            video.addEventListener('ended', function() {
+                musik.play().catch(function(e) { console.log(e); });
+            });
+        }
+    });
         // 1. Fungsi untuk Mengklaim Kupon
         function claimCoupon(buttonElement, couponName) {
             // Cari elemen kartu kupon pembungkusnya
@@ -837,14 +1035,25 @@ function triggerCelebration() {
         }
     }());
 }
-// Ganti 'rahasiahariini' dengan password yang kamu inginkan
-    var password = "vira123";
-    var input = prompt("Halaman ini dilindungi. Masukkan password untuk masuk:");
-    
-    if (input !== password) {
-        alert("Password salah! Kamu tidak bisa mengakses halaman ini.");
-        window.location.href = "https://www.google.com"; // Tendang ke Google kalau salah
+function playHoverSound() {
+    var sound = document.getElementById('hoverSound');
+    if (sound) {
+        sound.currentTime = 0; // Mengulang suara dari detik ke-0 setiap kali kursor masuk
+        sound.volume = 0.3;    // Set volume agak pelan (30%) agar tetap elegan dan tidak mengagetkan
+        sound.play().catch(function(e) {
+            console.log("Suara hover tertahan aturan browser sebelum ada klik utama:", e);
+        });
     }
+}
+<!-- // Ganti 'rahasiahariini' dengan password yang kamu inginkan -->
+    <!-- var password = "AstriDafi1703"; -->
+    <!-- var input = prompt("Halaman ini dilindungi. Masukkan password untuk masuk:"); -->
+    
+    <!-- if (input !== password) { -->
+        <!-- alert("Password salah! Kamu tidak bisa mengakses halaman ini."); -->
+        <!-- window.location.href = "https://www.google.com"; // Tendang ke Google kalau salah -->
+    <!-- } -->
+	
     </script>
 
 </body>

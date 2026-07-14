@@ -13,6 +13,49 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* ==========================================================================
+   CSS ANIMASI BUNGA JATUH (SAKURA FALLING)
+   ========================================================================== */
+#blossom-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;          /* Menjaga bunga tetap di atas latar belakang */
+    pointer-events: none;   /* KUNCI: Supaya teks & tombol di bawahnya tetap bisa diklik */
+    overflow: hidden;
+}
+
+/* Bentuk fisik kelopak bunga sakura merah muda elegan */
+.petal {
+    position: absolute;
+    background: linear-gradient(135deg, #ffb7c5, #ff99b0);
+    border-radius: 150% 0 150% 150%; /* Membuat bentuk kelopak bunga asli */
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fall linear infinite;
+}
+
+/* Animasi gerakan jatuh, melayang, dan berputar */
+@keyframes fall {
+    0% {
+        transform: translate(0, -10px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        /* Bunga akan tertiup sedikit ke kanan/kiri saat mencapai bawah */
+        transform: translate(100px, 105vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
 
 
 /* CARDS COMMON STYLE */
@@ -105,6 +148,68 @@ body {
         font-size: 0.85rem;
     }
 }
+
+/* Container Utama Tombol */
+.unlock-container {
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 30px;
+}
+
+/* Desain Tombol Mewah Bermotif Emas */
+.unlock-btn {
+    background: #ffffff;
+    color: #6d5440;
+    border: 1px solid #dfba9d;
+    padding: 15px 35px;
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(109, 84, 64, 0.05);
+    outline: 2px solid #ffffff;
+    outline-offset: -5px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.unlock-btn:hover {
+    background: #fffaf5;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(109, 84, 64, 0.12);
+    border-color: #c5966c;
+}
+
+.btn-sparkle {
+    display: inline-block;
+    margin-left: 5px;
+    animation: bounceSparkle 1.5s infinite alternate;
+}
+
+/* KONDISI AWAL: Sembunyikan semua halaman di bawahnya secara total */
+.halaman-tersembunyi {
+    display: none;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+/* KONDISI AKTIF: Saat tombol diklik, halaman memudar muncul dengan cantik */
+.halaman-tersembunyi.buka-semua {
+    display: block !important; /* Memaksa elemen muncul kembali */
+}
+
+.halaman-tersembunyi.efek-muncul {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes bounceSparkle {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+
 
 /* GAYA UNDANGAN MEWAH (LUXURY INVITATION) */
 .luxury-invitation {
@@ -963,6 +1068,7 @@ h1, h2, h3, .section-title {
     justify-content: center;   /* KUNCI: Membuat kartu di baris kedua otomatis kumpul di tengah */
     gap: 20px;                 /* Jarak antar kartu */
     margin-top: 25px;
+	background-color: #faf6f0;
 }
 
 /* Mengatur ukuran lebar kartu di desktop/layar besar */
@@ -1831,6 +1937,157 @@ h1, h2, h3, .section-title {
     }
     .chapter-spine::before, .chapter-spine::after {
         display: none; /* Hilangkan bayangan vertikal di HP */
+    }
+}
+
+/* ==========================================================================
+   CSS PANEL KEJUTAN VIDEO
+   ========================================================================== */
+.surprise-section {
+    max-width: 650px;
+    margin: 60px auto 100px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* Tampilan Kotak Kado Misterius */
+.gift-box-trigger {
+    background: #fffaf5;
+    border: 2px dashed #dfba9d;
+    border-radius: 20px;
+    padding: 40px 30px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(109, 84, 64, 0.05);
+    transition: all 0.4s ease;
+    animation: giftFloat 3s ease-in-out infinite; /* Efek melayang manis */
+}
+
+.gift-box-trigger:hover {
+    background: #ffffff;
+    border-color: #c5966c;
+    transform: scale(1.02);
+}
+
+.gift-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    animation: giftPulse 1.5s infinite alternate; /* Pita kado berdenyut */
+}
+
+.gift-box-trigger h3 {
+    font-family: 'Georgia', serif;
+    color: #4a3f35;
+    font-size: 1.2rem;
+    margin: 0 0 8px 0;
+}
+
+.gift-box-trigger p {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: #a38d7a;
+    margin: 0;
+}
+
+/* Panel Video Rahasia */
+.video-panel-box {
+    background: #ffffff;
+    border: 1px solid #dfba9d;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(109, 84, 64, 0.08);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+	max-width: 300px;       /* Batas lebar maksimal panel video (bisa kamu ganti sesukamu, misal 400px atau 480px) */
+    margin: 0 auto;
+}
+
+/* Saat aktif, panel video akan memudar muncul dengan anggun */
+.video-panel-box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Bingkai Pemutar Video Klasik */
+.video-frame-border {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 4px solid #ffffff;
+    outline: 1px solid #dfba9d;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    background: #000000;
+}
+
+.video-frame-border video {
+    width: 100%;
+    display: block;
+}
+
+.video-caption {
+    margin-top: 20px;
+}
+
+.video-caption h4 {
+    font-family: 'Georgia', serif;
+    color: #4a3f35;
+    font-size: 1.2rem;
+    margin: 0 0 5px 0;
+}
+
+.video-caption p {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #6d5440;
+    margin: 0;
+}
+
+/* Class pembantu untuk menyembunyikan elemen */
+.d-none {
+    display: none !important;
+}
+
+/* ANIMASI KEYFRAMES */
+@keyframes giftFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes giftPulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.12); }
+}
+
+/*==========================================================================
+   BINGKAI GABUNGAN UNTUK SURAT & KADO VIDEO
+   ========================================================================== */
+.combined-surprise-border {
+    background: #ffffff;
+    border: 1px solid #dfba9d;             /* Bingkai emas satin halus luar */
+    outline: 2px solid #ffffff;            /* Garis aksen putih di dalam */
+    outline-offset: -6px;                  /* Menarik garis aksen putih masuk ke dalam */
+    border-radius: 24px;
+    
+    max-width: 750px;                      /* Menyesuaikan lebar ideal agar proporsional */
+    margin: 50px auto;                     /* Posisi di tengah halaman dengan jarak atas-bawah */
+    padding: 30px 20px;
+    
+    /* Efek bayangan jatuh yang lembut di permukaan dinding */
+    box-shadow: 
+        0 10px 30px rgba(74, 63, 53, 0.05),
+        inset 0 0 0 5px #ffffff;
+}
+
+/* Penyesuaian responsif untuk layar HP agar jarak pinggirannya pas */
+@media (max-width: 768px) {
+    .combined-surprise-border {
+        margin: 30px 15px;
+        padding: 20px 10px;
     }
 }
 
