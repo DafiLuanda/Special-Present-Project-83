@@ -2626,6 +2626,32 @@ h1, h2, h3, .section-title {
     }
 }
 
+/* Styling untuk petunjuk geser */
+.scroll-hint {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    color: #a39284; /* Warna senada dengan tema buku */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+    animation: bounceRight 2s infinite; /* Animasi bergerak kekanan */
+}
+
+.arrow-icon {
+    font-size: 1.2rem;
+}
+
+/* Keyframes untuk membuat panah bergerak ke kanan perlahan */
+@keyframes bounceRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
 /* Container Gulungan Film */
 .film-strip-container {
     width: 100%;
