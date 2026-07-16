@@ -673,17 +673,23 @@ h1, h2, h3, .section-title {
     color: #6d5440;
 }
 
-/* TATA LETAK BENTO GRID */
+/* Pembungkus agar latar belakang area bento berwarna putih bersih */
+.bento-frame {
+    width: 100%;
+    padding: 20px 10px;
+    background: #ffffff;
+    border-bottom: 1px solid #f2eade; /* Batas halus sebelum masuk ke teks pastel */
+    box-sizing: border-box;
+}
+
+/* Sedikit penyesuaian margin bento agar pas di dalam frame putih */
 .bento-container {
     display: grid;
-    /* Membuat 3 kolom sama rata */
     grid-template-columns: repeat(3, 1fr); 
-    /* Membuat 2 baris otomatis */
-    grid-template-rows: 350px 350px; 
-    /* Jarak antar sekat foto */
+    grid-auto-rows: 240px; 
     gap: 15px; 
     max-width: 95%;
-    margin: 30px auto;
+    margin: 10px auto !important; /* Margin vertikal dikecilkan agar seimbang di dalam frame */
 }
 
 /* Mengatur karakteristik item bento */
@@ -692,6 +698,7 @@ h1, h2, h3, .section-title {
     overflow: hidden;
     border-radius: 16px; /* Sudut melengkung halus */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    height: 100%; /* Memastikan tinggi item penuh mengisi grid slot */
 }
 
 /* Mengatur foto di dalam bento agar pas */
@@ -700,6 +707,35 @@ h1, h2, h3, .section-title {
     height: 100%;
     object-fit: cover; /* Foto tidak akan gepeng */
     display: block;
+}
+
+/* FORMULASI FORMULASI BENTO (Tampilan Laptop) */
+.bento-tall {
+    grid-row: span 2; /* Memakan 2 baris ke bawah */
+}
+
+.bento-wide {
+    grid-column: span 2; /* Memakan 2 kolom ke samping */
+}
+
+/* RESPONSIF UNTUK HP (Biar di HP tampilannya rata, berurutan ke bawah, anti-acak-acakan) */
+@media (max-width: 768px) {
+    .bento-container {
+        grid-template-columns: 1fr !important; /* Paksa jadi 1 kolom tunggal di HP */
+        grid-auto-rows: auto !important; /* Matikan sistem baris bento */
+        gap: 15px !important;
+    }
+    
+    /* Reset fungsi perluasan kolom/baris agar tidak merusak layout mobile */
+    .bento-tall, .bento-wide {
+        grid-row: auto !important;
+        grid-column: auto !important;
+    }
+    
+    /* Paksa semua foto memiliki tinggi rata dan seragam di layar HP */
+    .bento-item {
+        height: 280px !important; 
+    }
 }
 
 /* STRUKTUR BENTO MINI (BABAK 1) */
@@ -2203,6 +2239,59 @@ h1, h2, h3, .section-title {
 @keyframes pulseIndicator {
     0%, 100% { transform: scale(1); opacity: 0.6; }
     50% { transform: scale(1.03); opacity: 1; }
+}
+
+/* ==========================================================================
+   PERBAIKAN RESPONSIVE BUKU UNTUK LAYAR HANDPHONE (ANTI-BOCOR)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. Bebaskan tinggi container agar fleksibel mengikuti panjang teks mobile */
+    .chapter-container {
+        flex-direction: column; /* Ubah susunan dari samping jadi atas-bawah */
+        height: auto !important; 
+        min-height: 320px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    /* 2. Kurangi padding konten yang terlalu tebal di HP */
+    .page-content {
+        padding: 30px 20px !important; 
+        height: auto !important;
+    }
+
+    /* 3. Sesuaikan ukuran font judul agar proporsional di layar HP */
+    .page-old h2 {
+        font-size: 1.8rem !important;
+    }
+
+    .page-new h2 {
+        font-size: 2rem !important;
+    }
+    
+    .page-new .wishes-text {
+        font-size: 1.05rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* 4. Sembunyikan pembatas tengah (spine) karena susunan buku sudah jadi vertikal */
+    .chapter-spine {
+        display: none !important;
+    }
+
+    /* 5. Sesuaikan rotasi melipat agar patah ke atas di layar HP */
+    .chapter-container.flip-active .page-old .page-flip-wrapper {
+        transform: rotateX(-180deg) !important; 
+    }
+    
+    .page-old .page-flip-wrapper {
+        transform-origin: center bottom;
+        border-radius: 16px 16px 0 0;
+    }
+    
+    .page-new {
+        border-radius: 0 0 16px 16px;
+    }
 }
 
 .wedding-sparkle {
