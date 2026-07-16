@@ -722,24 +722,31 @@ h1, h2, h3, .section-title {
 }
 
 /* RESPONSIF UNTUK HP (Biar di HP otomatis rata vertikal dan tidak mepet layar) */
+/* PERBAIKAN TOTAL UNTUK BABAK 3 DI MOBILE */
 @media (max-width: 768px) {
     .bento-frame {
-        padding: 20px 15px !important; /* Menjaga jarak putih kanan-kiri di HP tetap seimbang */
+        padding: 15px !important; /* Kurangi padding agar foto bisa lebih lega */
     }
 
     .bento-container {
-        grid-template-columns: 1fr !important; 
-        grid-auto-rows: auto !important; 
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Paksa jadi 1 kolom */
+        grid-auto-rows: min-content !important; /* Biarkan tinggi menyesuaikan konten */
         gap: 15px !important;
-    }
-    
-    .bento-tall, .bento-wide {
-        grid-row: auto !important;
-        grid-column: auto !important;
+        max-width: 100% !important;
     }
     
     .bento-item {
-        height: 280px !important; /* Tinggi foto seragam dan proporsional di HP */
+        height: 250px !important; /* Kita kecilkan sedikit dari 280px agar lebih proporsional */
+        grid-row: auto !important; /* Lepas paksaan span 2 */
+        grid-column: auto !important; /* Lepas paksaan span 2 */
+    }
+    
+    /* Memastikan gambar tetap rapi meski container diubah */
+    .bento-item img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
     }
 }
 
