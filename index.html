@@ -9,77 +9,101 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-	<!-- LIBRARY UNTUK EFEK HUJAN KONFETI -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<!-- Audio Efek Suara Saat Hover Foto Profil -->
+	
+	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> <!-- LIBRARY UNTUK EFEK HUJAN KONFETI -->
+
 </head>
 <body>
-	<audio id="hoverSound">
+	<audio id="hoverSound"> <!-- Audio Efek Suara Saat Hover Foto Profil -->
 		<source src="Sound/Party Popper.mp3" type="audio/mp3">
 	</audio>
-	<div id="blossom-container"></div>
-    <header class="hero-section">
-        <div class="hero-content">
-            <p class="hero-subtitle">Hari ini adalah harimu</p>
-            <h1 class="hero-title">Happy Birthday!</h1>
-            <p class="hero-name"><br>Astri Fitriani</p>
-        </div>
-    </header>
-	<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
-    <main class="container">
+	
+	<div id="blossom-container"></div> <!--Animasi Sakura Jatuh -->
+	
+<header class="hero-section">
+    <div class="hero-content">
+        <p class="hero-subtitle">Hari ini adalah harimu</p>
         
-        <section class="section opening-section">
-            <div class="card text-center luxury-invitation">
-                
-                <!-- Tanggal Ulang Tahun Bergaya Undangan Mewah -->
-                <div class="invitation-date-badge">
-                    <span class="gold-sparkle">✦</span>
-                    <span class="date-text">17 . 07 . 2026</span>
-                    <span class="gold-sparkle">✦</span>
-                </div>
-                
-                <h2 class="invitation-heading">Chapter 43</h2>
-                <div class="elegant-divider"></div>
-                
-                <!-- FOTO UTAMA DI TENGAH -->
-                <div class="top-profile-container">
-                    <!-- Ubah kode frame fotomu menjadi seperti ini -->
-					<div class="profile-frame" onmouseenter="playHoverSound()">
-						<img src="images/Birthday.jpg" alt="Happy Birthday Princess">
-					</div>
-                </div>
-
-                <!-- Isi Surat dengan Font Tulisan Tangan Estetik -->
-                <div class="invitation-letter">
-                    <p class="salutation">Hai Astri...</p>
-					<div class="profile-sparkle">✨ Selamat ulang tahun ya! ✨</div><br>
-                    
-                    <p class="letter-body">
-                        Di hari yang spesial ini, gue sengaja membuat halaman web ini khusus untukmu. 
-                        Ini adalah tempat kecil di internet di mana gue mengumpulkan serpihan ingatan, tawa, dan semua momen indah yang sudah kita lalui bersama.
-                    </p>
-                    
-                    <p class="letter-body">
-                        Karena setiap lembar halaman baru dalam hidup, selalu ada halaman sebelumnya yang memberikan kita arti, arah, dan keberanian untuk terus menuliskan lembar halaman berikutnya.
-                    </p>
-                    
-                    <p class="closing">
-                        Terima kasih sudah lahir ke dunia dan melengkapi hidup ini yaa.
-                    </p>
-                </div>
-                
-                <div class="elegant-divider-bottom">♥</div>
-            </div>
-        </section>
-		
-		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
-		
-		<div class="unlock-container" id="containerTombol">
-            <button class="unlock-btn" onclick="bukaSeluruhHalaman()">
-                <span>Buka Lembaran Kenangan</span>
-                <span class="btn-sparkle">✨</span>
-            </button>
+        <div class="title-wrapper">
+            <!-- Bintang kiri & kanan menggunakan elemen kustom -->
+            <span class="custom-sparkle star-left"></span>
+            <h1 class="hero-title shimmer-effect">Happy Birthday</h1>
+            <span class="custom-sparkle star-right"></span>
         </div>
+        
+        <p class="hero-name">Astri Fitriani</p>
+    </div>
+</header>
+
+<!-- Mengganti deretan simbol manual dengan garis pemisah yang clean -->
+<div class="elegant-section-divider">✦</div>
+
+<main class="container">
+    <section class="section opening-section">
+    <div class="card text-center luxury-invitation">
+        
+        <!-- Tanggal Ulang Tahun Bergaya Undangan Mewah -->
+        <div class="invitation-date-badge">
+            <span class="gold-sparkle">✦</span>
+            <span class="date-text">17 . 07 . 2026</span>
+            <span class="gold-sparkle">✦</span>
+        </div>
+        
+        <h2 class="invitation-heading">Chapter 43</h2>
+        <div class="elegant-divider"></div>
+        
+        <!-- Kontainer Petunjuk "Click me!" yang Lebih Minimalis & Clean -->
+        <div class="click-hint-container">
+            <span class="click-hint-text">Click the profile</span>
+            <div class="click-arrows">
+                <span class="arrow-down">↓</span>
+            </div>
+        </div>
+        
+        <div class="top-profile-container">
+            <!-- Frame Foto (Animasi & Suara dipicu saat ONCLICK) -->
+            <div class="profile-frame reveal-sticker-click" onclick="playClickInteraction(this)">
+                <img src="images/Birthday.jpg" alt="Happy Birthday Princess">
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- BUNGKUSAN UTAMA: Menyembunyikan SEMUA elemen di bawah foto di awal -->
+        <!-- ========================================================================= -->
+        <div id="hidden-content" class="content-hidden">
+            
+            <!-- Isi Surat dengan Efek Muncul Per Baris -->
+            <div class="invitation-letter">
+                <p class="salutation fade-line">Hai Astri...</p>
+                <div class="profile-sparkle fade-line">✨ Selamat ulang tahun ya! ✨</div>
+                
+                <p class="letter-body fade-line">
+                    Di hari yang spesial ini, gue sengaja membuat halaman web ini khusus untukmu. 
+                    Ini adalah tempat kecil di internet di mana gue mengumpulkan serpihan ingatan, tawa, dan semua momen indah yang sudah kita lalui bersama.
+                </p>
+                
+                <p class="letter-body fade-line">
+                    Karena setiap lembar halaman baru dalam hidup, selalu ada halaman sebelumnya yang memberikan kita arti, arah, dan keberanian untuk terus menuliskan lembar halaman berikutnya.
+                </p>
+                
+                <p class="closing fade-line">Terima kasih sudah lahir ke dunia dan melengkapi hidup ini yaa.</p>
+            </div>
+            
+            <div class="elegant-divider-bottom fade-line">♥</div>
+
+            <!-- Tombol Unlock -->
+            <div class="unlock-container fade-line" id="containerTombol">
+                <button class="unlock-btn" onclick="bukaSeluruhHalaman()">
+                    <span>Buka Lembaran Kenangan</span>
+                    <span class="btn-sparkle">✨</span>
+                </button>
+            </div>
+
+        </div> <!-- Menutup bungkusan #hidden-content -->
+
+    </div> <!-- Menutup card luxury-invitation -->
+</section> <!-- Menutup section opening-section -->
+	
 		
 <div class="halaman-tersembunyi" id="kontenRahasia"> <!-- Hide halaman di mulai -->
 		
@@ -89,11 +113,13 @@
 		</audio>
 		
         <section class="section journey-section">
-            <h2 class="section-title">Our Journey Together</h2>
-            <p class="section-subtitle">Beberapa babak cerita yang paling berkesan dalam perjalanan kita.</p>
-			
+			<h2 class="section-title reveal-zoom-center">Our Journey Together</h2>
+			<p class="section-subtitle reveal-up">
+				Beberapa babak cerita yang paling berkesan dalam perjalanan kita.
+			</p>
+						
 			<article class="blog-card">
-            <div class="bento-mini-container">
+            <div class="bento-mini-container reveal-zoom">
                         <div class="bento-mini-item bento-mini-tall">
                             <img src="images/The Beginning 1.jpeg" alt="Awal 1">
                         </div>
@@ -105,7 +131,7 @@
                         </div>
                     </div>
 					
-                    <div class="blog-content">
+                    <div class="blog-content  reveal-down">
                         <span class="blog-date">Babak 1: The Beginning After "The End"</span>
                         <h3>Hari Dimana Semuanya Dimulai Kembali</h3>
                         <p>Setelah sudah 2 tahun lamanya kita lost contact, akhirnya kita membuka komunikasi kembali. Diawali dengan chat dari lu yang ingin mengucapkan selamat ketika gue promosi jadi Manager. Hal itu berujung pada pertemuan kita ini di Starbuck untuk "reconnect" kembali</p>
@@ -114,18 +140,18 @@
 				
 				<article class="blog-card">
                     <div class="frame-container">
-                        <div class="frame-item">
+                        <div class="frame-item reveal-left">
                             <img src="images/Distance 1.jpeg" alt="Jarak 1">
                         </div>
-                        <div class="frame-item">
+                        <div class="frame-item reveal-zoom">
                             <img src="images/Distance 2.jpeg" alt="Jarak 2">
                         </div>
-                        <div class="frame-item">
+                        <div class="frame-item reveal-right">
                             <img src="images/Distance 3.jpeg" alt="Jarak 3">
                         </div>
                     </div>
                     
-                    <div class="blog-content">
+                    <div class="blog-content reveal-down">
                         <span class="blog-date">Babak 2: The Distance</span>
                         <h3>Jarak yang "Memisahkan"</h3>
                         <p>Momen sedih waktu itu karena kita terpaksa "terpisah" oleh tempat. Lu dan mba Romana harus pindah ke Tubun dan gue di Centennial.Walaupun begitu, selalu ada cara untuk kita bisa komunikasi lagi.</p>
@@ -133,7 +159,7 @@
                 </article>
 				
 				<article class="blog-card">
-                    <div class="bento-container">
+                    <div class="bento-container reveal-zoom">
                 
 						<div class="bento-item bento-tall">
 							<img src="images/Perkumpulan Pertama.jpeg" alt="Perkumpulan 1">
@@ -151,7 +177,7 @@
 							<img src="images/Perkumpulan Keempat.jpeg" alt="Perkumpulan 4">
 						</div>
 					</div>
-                    <div class="blog-content">
+                    <div class="blog-content reveal-down">
                         <span class="blog-date">Babak 3: The Connection</span>
                         <h3>Membuat Group "DIETnya BESOK AJA..!!!</h3>
                         <p>Diawali dengan kita bertiga dengan mba Romana, kemudian ditambah Akbar dan disusul mba Riya. Kita membuat group perkumpulan untuk bisa saling terkoneksi satu sama lain. Yang awal niatnya hanya menjadi alasan untuk kita bisa bersama, menjadi keluarga yang tidak tergantikan.</p>
@@ -166,25 +192,25 @@
                 <div class="window-bento-grid">
                     
                     <!-- Petak 1 (Kiri Atas) -->
-                    <div class="window-bento-pane">
+                    <div class="window-bento-pane reveal-up">
                         <img src="images/Kejar 1.jpeg" alt="Kejar 1">
                         <div class="window-bento-overlay"><span>Penghalang & Rintangan</span></div>
                     </div>
                     
                     <!-- Petak 2 (Kanan Atas) -->
-                    <div class="window-bento-pane">
+                    <div class="window-bento-pane reveal-up">
                         <img src="images/Kejar 2.jpeg" alt="Kejar 2">
                         <div class="window-bento-overlay"><span>Tidak Menjadi Alasan</span></div>
                     </div>
                     
                     <!-- Petak 3 (Kiri Bawah) -->
-                    <div class="window-bento-pane">
+                    <div class="window-bento-pane reveal-down">
                         <img src="images/Kejar 3.jpeg" alt="Kejar 3">
                         <div class="window-bento-overlay"><span>Hilangnya</span></div>
                     </div>
                     
                     <!-- Petak 4 (Kanan Bawah) -->
-                    <div class="window-bento-pane">
+                    <div class="window-bento-pane reveal-down">
                         <img src="images/Kejar 4.jpeg" alt="Kejar 4">
                         <div class="window-bento-overlay"><span>Rasa Peduli</span></div>
                     </div>
@@ -193,7 +219,7 @@
             </div>
 
             <!-- Konten Cerita di Bagian Bawah -->
-            <div class="blog-content">
+            <div class="blog-content reveal-down">
                 <span class="blog-date">Babak 4 (Now): The Adaptation</span>
                 <h3></h3>
                 <p>Pergantian suasana ekstrim yang sedang terjadi saat ini. Saking ekstrimnya, memaksa kita untuk adjust cara kita berinteraksi. Tetapi ini tidak menjadi penghalang kita untuk bisa saling peduli satu sama lain yaaa</p>
@@ -205,13 +231,13 @@
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
  
 		<section class="section scrapbook-section">
-            <h2 class="section-title">Random Snaps of You</h2>
-            <p class="section-subtitle">Foto random yang berkesan dalam melengkapi cerita hari hari kita</p>
+            <h2 class="section-title reveal-down">Random Snaps of You</h2>
+            <p class="section-subtitle reveal-up">Foto random yang berkesan dalam melengkapi cerita hari hari kita</p>
             
             <div class="dinding-bingkai">
             
             <!-- Foto 1 -->
-            <div class="polaroid polaroid-left">
+            <div class="polaroid polaroid-left reveal-right">
                 <div class="push-pin"></div> <!-- Tambahkan Pin Mading -->
                 <div class="polaroid-img">
                     <img src="images/Random 1.jpg" alt="Random 1">
@@ -223,7 +249,7 @@
             </div>
 
             <!-- Foto 2 -->
-            <div class="polaroid polaroid-right">
+            <div class="polaroid polaroid-right reveal-left">
                 <div class="push-pin"></div> <!-- Tambahkan Pin Mading -->
                 <div class="polaroid-img">
                     <img src="images/Random 2.jpg" alt="Random 2">
@@ -235,7 +261,7 @@
             </div>
 
             <!-- Foto 3 -->
-            <div class="polaroid polaroid-left">
+            <div class="polaroid polaroid-left reveal-left">
                 <div class="push-pin"></div> <!-- Tambahkan Pin Mading -->
                 <div class="polaroid-img">
                     <img src="images/Random 3.jpg" alt="Random 3">
@@ -247,7 +273,7 @@
             </div>
             
             <!-- Foto 4 -->
-            <div class="polaroid polaroid-left">
+            <div class="polaroid polaroid-left reveal-right">
                 <div class="push-pin"></div> <!-- Tambahkan Pin Mading -->
                 <div class="polaroid-img">
                     <img src="images/Random 4.jpeg" alt="Random 4">
@@ -259,7 +285,7 @@
             </div>
             
             <!-- Foto 5 -->
-            <div class="polaroid polaroid-left">
+            <div class="polaroid polaroid-left reveal-zoom">
                 <div class="push-pin"></div> <!-- Tambahkan Pin Mading -->
                 <div class="polaroid-img">
                     <img src="images/Random 5.jpeg" alt="Random 5">
@@ -276,11 +302,11 @@
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 		
 		<section class="section food-section">
-            <h2 class="section-title">The Birthday Café Menu</h2>
-            <p class="section-subtitle">Daftar rasa favorit yang selalu sukses memanjakan lidah dan hatimu.</p>
+            <h2 class="section-title reveal-left-center">The Birthday Café Menu</h2>
+            <p class="section-subtitle reveal-right">Daftar rasa favorit yang selalu sukses memanjakan lidah dan hatimu.</p>
             
-            <div class="cafe-menu-board">
-                <div class="menu-header">
+            <div class="cafe-menu-board reveal-zoom">
+                <div class="menu-header reveal-up">
                     <span>✦ TODAY'S SPECIALS FOR YOU ✦</span>
                 </div>
 
@@ -292,7 +318,15 @@
                         <div class="menu-title-row">
                             <span class="food-name">Aneka Mie</span>
                             <span class="menu-line"></span>
-                            <span class="food-price">⭐⭐⭐⭐⭐</span>
+                            <span class="food-price reveal-fade-left">
+							<div class="star-rating-container">
+							<span class="star-item reveal-zoom">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.2s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.4s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.6s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 1.0s;">⭐</span>
+							</span>
+							</div>
                         </div>
                         <p class="food-desc">Makanan favorite, sering banget ngidam ini , jadi makanan yang hampir nggak bisa nolak ketika di tawarin.</p>
                     </div>
@@ -306,7 +340,15 @@
                         <div class="menu-title-row">
                             <span class="food-name">Triple Choco Ovomaltine</span>
                             <span class="menu-line"></span>
-                            <span class="food-price">⭐⭐⭐⭐⭐</span>
+                            <span class="food-price reveal-fade-left">
+							<div class="star-rating-container">
+							<span class="star-item reveal-zoom">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.2s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.4s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.6s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 1.0s;">⭐</span>
+							</span>
+							</div>
                         </div>
                         <p class="food-desc">Minuman favorite, setiap lagi stress kerjaan pasti deh minuman ini bisa bikin mood lu lebih baik, go to drink kalau lagi di Tubun</p>
                     </div>
@@ -320,7 +362,15 @@
                         <div class="menu-title-row">
                             <span class="food-name">Lonsay</span>
                             <span class="menu-line"></span>
-                            <span class="food-price">⭐⭐⭐⭐⭐</span>
+                            <span class="food-price reveal-fade-left">
+							<div class="star-rating-container">
+							<span class="star-item reveal-zoom">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.2s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.4s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.6s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 1.0s;">⭐</span>
+							</span>
+							</div>
                         </div>
                         <p class="food-desc">Kalau laper pas pagi, sering banget deh pesen makan buat sarapannya tuh lonsay, rutin nitip sama mba Romana.</p>
                     </div>
@@ -334,7 +384,15 @@
                         <div class="menu-title-row">
                             <span class="food-name">Buah Naga</span>
                             <span class="menu-line"></span>
-                            <span class="food-price">⭐⭐⭐⭐⭐</span>
+                            <span class="food-price reveal-fade-left">
+							<div class="star-rating-container">
+							<span class="star-item reveal-zoom">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.2s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.4s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.6s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 1.0s;">⭐</span>
+							</span>
+							</div>
                         </div>
                         <p class="food-desc">Cemilan sehat yang udah dari dulu sering gue beliin, buah yang punya kenangan tersendiri, selalu jadi buah pertama yang gue cari kalau mau kasih ke lu</p>
                     </div>
@@ -348,7 +406,15 @@
                         <div class="menu-title-row">
                             <span class="food-name">Pizza</span>
                             <span class="menu-line"></span>
-                            <span class="food-price">⭐⭐⭐⭐⭐</span>
+                            <span class="food-price reveal-fade-left">
+							<div class="star-rating-container">
+							<span class="star-item reveal-zoom">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.2s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.4s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.6s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 1.0s;">⭐</span>
+							</span>
+							</div>
                         </div>
                         <p class="food-desc">Ini mungkin bukan makanan favorite lu, tapi ada kenangan di makanan ini, pertama kali gue jajanin makan besar untuk orang rumah tuh Pizza ini hehehe</p>
                     </div>
@@ -362,7 +428,15 @@
                         <div class="menu-title-row">
                             <span class="food-name">Greenly</span>
                             <span class="menu-line"></span>
-                            <span class="food-price">⭐⭐⭐⭐⭐</span>
+                            <span class="food-price reveal-fade-left">
+							<div class="star-rating-container">
+							<span class="star-item reveal-zoom">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.2s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.4s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.6s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 1.0s;">⭐</span>
+							</span>
+							</div>
                         </div>
                         <p class="food-desc">Salah satu makanan favorite ibu, sering banget juga lu ngidamin ini kalau lagi pengen makan sehat, ditambah minuman smoothie nya jugaa</p>
                     </div>
@@ -376,8 +450,16 @@
                         <div class="menu-title-row">
                             <span class="food-name">Aneka Coklat</span>
                             <span class="menu-line"></span>
-                            <span class="food-price">⭐⭐⭐⭐⭐</span>
+                            <span class="food-price reveal-fade-left">
+							<div class="star-rating-container">
+							<span class="star-item reveal-zoom">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.2s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.4s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.6s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 1.0s;">⭐</span>
+							</span>
                         </div>
+						</div>
                         <p class="food-desc">Ini sudah nggak perlu di jelaskan, snack favorite lu, apalagi kalau coklatnya itu milo, pasti nggak nolak deeeh</p>
                     </div>
                 </div>
@@ -390,8 +472,16 @@
                         <div class="menu-title-row">
                             <span class="food-name">Masakan Rumah</span>
                             <span class="menu-line"></span>
-                            <span class="food-price">⭐⭐⭐⭐⭐</span>
+                            <span class="food-price reveal-fade-left">
+							<div class="star-rating-container">
+							<span class="star-item reveal-zoom">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.2s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.4s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 0.6s;">⭐</span>
+							<span class="star-item reveal-zoom" style="transition-delay: 1.0s;">⭐</span>
+							</span>
                         </div>
+						</div>
                         <p class="food-desc">Si jago masak, prepare makanan untuk orang rumah pasti menjadi favorite ya, tidak ada yang mengalahkan rasa dari masakan sendiri dan masakan untuk orang-orang tercinta</p>
                     </div>
                 </div>
@@ -405,8 +495,8 @@
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 		
 		<section class="section achievements-section">
-            <h2 class="section-title">Your Personal Achievements</h2>
-            <p class="section-subtitle">Aku selalu bangga melihat proses dan kerja kerasmu selama ini.</p>
+            <h2 class="section-title reveal-right-center">Your Personal Achievements</h2>
+            <p class="section-subtitle reveal-left">Aku selalu bangga melihat proses dan kerja kerasmu selama ini.</p>
             
             <div class="achievement-flex-container">
                 
@@ -495,72 +585,73 @@
 		
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 		
-		<section class="section biggest-achievement-section">
-					<h2 class="section-title">And Your Biggest Achievement is...</h2>
-					<p class="section-subtitle">Menjadi ibu yang baik untuk keluarga.</p>
-					<div class="biggest-description">
-			<!-- 1. GAMBAR MEDAL BESAR YANG ESTETIK -->
-			<!-- <div class="medal-badge-container"> -->
-				<!-- <img src="images/gold medal.png" alt="Gold Medal Achievement" class="biggest-medal-img"> -->
-			<!-- </div> -->
-		</div>
-            
-            <div class="card biggest-card">
-                <div class="photo-collage-container">
-                    <div class="collage-item"><img src="images/Biggest 1.jpg" alt="Memori 1"></div>
-                    <div class="collage-item"><img src="images/Biggest 2.jpg"	 alt="Memori 2"></div>
-                    <div class="collage-item"><img src="images/Biggest 3.jpg" alt="Memori 3"></div>
-                    <div class="collage-item"><img src="images/Biggest 4.jpg" alt="Memori 4"></div>
-                    <div class="collage-item"><img src="images/Biggest 5.jpg" alt="Memori 5"></div>
-                    <div class="collage-item"><img src="images/Biggest 6.jpg" alt="Memori 6"></div>
-					<div class="collage-item"><img src="images/Biggest 7.jpg" alt="Memori 7"></div>
-                    <div class="collage-item"><img src="images/Biggest 8.jpeg" alt="Memori 8"></div>
-                    </div>
-                
-                <div class="biggest-description">
-                    <h3>Melewati Segala Musim Bersama Keluarga</h3>
-                    <p>Dari semua hal hebat yang sudah dicapai, bagi gue pencapaian terbesar lu adalah bagaimana lu berhasil selalu ada di momen-momen penting keluarga lu, menyempatkan waktu lu untuk bisa terus support keluarga, dan menjadi contoh yang baik untuk keluarga.<br><br> Kamu luar biasa hebat Astri... Keluarga lu beruntung punya sosok perempuan seperti mu...</p>
-                </div>
+<section class="section biggest-achievement-section">
+    <h2 class="section-title reveal-zoom-center">And Your Biggest Achievement is...</h2>
+    <p class="section-subtitle reveal-zoom">Menjadi ibu yang baik untuk keluarga.</p>
+    
+    <div class="biggest-description"></div>
+    
+    <!-- Bagian card utama tetap seperti kodemu -->
+    <div class="card biggest-card">
+        <div class="photo-collage-container">
+            <!-- TAMBAHKAN KELAS target-collage-item DI SINI -->
+            <div class="collage-item target-collage-item"><img src="images/Biggest 1.jpg" alt="Memori 1"></div>
+            <div class="collage-item target-collage-item"><img src="images/Biggest 2.jpg" alt="Memori 2"></div>
+            <div class="collage-item target-collage-item"><img src="images/Biggest 3.jpg" alt="Memori 3"></div>
+            <div class="collage-item target-collage-item"><img src="images/Biggest 4.jpg" alt="Memori 4"></div>
+            <div class="collage-item target-collage-item"><img src="images/Biggest 5.jpg" alt="Memori 5"></div>
+            <div class="collage-item target-collage-item"><img src="images/Biggest 6.jpg" alt="Memori 6"></div>
+            <div class="collage-item target-collage-item"><img src="images/Biggest 7.jpg" alt="Memori 7"></div>
+            <div class="collage-item target-collage-item"><img src="images/Biggest 8.jpeg" alt="Memori 8"></div>
+        </div>
+        
+        <div class="biggest-description reveal-zoom">
+            <h3>Melewati Segala Musim Bersama Keluarga</h3>
+            <p>Dari semua hal hebat yang sudah dicapai, bagi gue pencapaian terbesar lu adalah bagaimana lu berhasil selalu ada di momen-momen penting keluarga lu, menyempatkan waktu lu untuk bisa terus support keluarga, dan menjadi contoh yang baik untuk keluarga.<br><br> Kamu luar biasa hebat Astri... Keluarga lu beruntung punya sosok perempuan seperti mu...</p>
+        </div>
+    </div>
+</section>
+
+<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+
+<section class="section wishes-section">
+    <h2 class="section-title reveal-zoom-center">Gratitudes</h2>
+    <!-- Tambahkan kelas target-reveal di kartu utama gratitude -->
+    <div class="card text-center final-card target-reveal">
+        <h2>Ungkapan Rasa Terima Kasih</h2>
+        <p class="wishes-text">Sebelum Chapter 42-mu ini ditutup, Izinkan gue untuk mengucapkan rasa terima kasih yang mewakili seluruh insan, yang mungkin belum sempat terucap langsung</p>
+        
+        <div class="thank-you-list">
+            <!-- Berikan kelas target-reveal pada masing-masing item list thank you agar naik 1 per 1 secara bertahap -->
+            <div class="thank-you-item target-reveal">
+                <span class="thank-icon">🌟</span>
+                <p>Terima kasih sudah menjadi <strong>leader yang baik, pintar, solutif, dermawan, dan empati</strong> untuk <strong>Timmu di BNI Life</strong>.</p>
             </div>
-        </section>
-		
-		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
-		
-		 <section class="section wishes-section">
-		 <h2 class="section-title">Gratitudes</h2>
-            <div class="card text-center final-card">
-                <h2>Ungkapan Rasa Terima Kasih</h2>
-				<p class="wishes-text">Sebelum Chapter 42-mu ini ditutup, Izinkan gue untuk mengucapkan rasa terima kasih yang mewakili seluruh insan, yang mungkin belum sempat terucap langsung</p>
-				 <div class="thank-you-list">
-                        <div class="thank-you-item">
-                            <span class="thank-icon">🌟</span>
-                            <p>Terima kasih sudah menjadi <strong>leader yang baik, pintar, solutif, dermawan, dan empati</strong> untuk <strong>Timmu di BNI Life</strong>.</p>
-                        </div>
-                        <div class="thank-you-item">
-                            <span class="thank-icon">💼</span>
-                            <p>Terima kasih sudah menjadi <strong>team member yang sabar, gigih, dan tenang</strong> menghadapi tuntutan yang diberikan <strong>Atasanmu di BNI Life</strong>.</p>
-                        </div>
-                        <div class="thank-you-item">
-                            <span class="thank-icon">🍢</span>
-                            <p>Terima kasih sudah menjadi <strong>teman yang baik</strong> untuk seluruh anggota group <strong>DIETnya BESOK AJA..!!!</strong>.</p>
-                        </div>
-                        
-                        <div class="thank-you-item">
-                            <span class="thank-icon">🤍</span>
-                            <p>Terima kasih sudah menjadi <strong>Ibu yang baik, pengertian, penuh kasih sayang, dan penuh cinta</strong> untuk <strong>Keluarga</strong>.</p>
-                        </div>
-                    </div>
-		</section>
+            <div class="thank-you-item target-reveal">
+                <span class="thank-icon">💼</span>
+                <p>Terima kasih sudah menjadi <strong>team member yang sabar, gigih, dan tenang</strong> menghadapi tuntutan yang diberikan <strong>Atasanmu di BNI Life</strong>.</p>
+            </div>
+            <div class="thank-you-item target-reveal">
+                <span class="thank-icon">🍢</span>
+                <p>Terima kasih sudah menjadi <strong>teman yang baik</strong> untuk seluruh anggota group <strong>DIETnya BESOK AJA..!!!</strong>.</p>
+            </div>
+            <div class="thank-you-item target-reveal">
+                <span class="thank-icon">🤍</span>
+                <p>Terima kasih sudah menjadi <strong>Ibu yang baik, pengertian, penuh kasih sayang, dan penuh cinta</strong> untuk <strong>Keluarga</strong>.</p>
+            </div>
+        </div>
+    </div>
+</section>
 		
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>		
 					<!-- SESI KHUSUS: RASA TERIMA KASIH PRIBADI (TRI TO ASTRI) -->
         <section class="section personal-thanks-section">
 			 <div class="card text-center final-card">
-                <h2 class="personal-title">Dan... dari gue pribadi...</h2>
-				<div class="personal-badge">✦ Dari Lubuk Hati ✦</div>
+                <h2 class="personal-title reveal-left">Dan... dari gue pribadi...</h2>
+				<div class="personal-badge reveal-right">✦ Dari Lubuk Hati ✦</div>
                 <div class="elegant-divider"></div>
                 
-                <p class="personal-intro">
+                <p class="personal-intro reveal-zoom">
                     Di luar peranmu untuk tim, teman-teman, dan keluarga, gue mau berterima kasih atas semua momen berharga yang kita share bersama.
                 </p>
 
@@ -568,7 +659,7 @@
                 <div class="thanks-memo-grid">
                     
                     <!-- Memo 1 -->
-                    <div class="memo-item">
+                    <div class="memo-item reveal-sticker">
                         <div class="memo-photo">
                             <img src="images/Gratitude 1.jpg" alt="Momen Berdua 1">
                         </div>
@@ -579,7 +670,7 @@
                     </div>
 
                     <!-- Memo 2 (Posisi foto otomatis rapi di grid) -->
-                    <div class="memo-item">
+                    <div class="memo-item reveal-sticker">
                         <div class="memo-photo">
                             <img src="images/Gratitude 2.jpg" alt="Momen Berdua 2">
                         </div>
@@ -590,7 +681,7 @@
                     </div>
 
                     <!-- Memo 3 -->
-                    <div class="memo-item">
+                    <div class="memo-item reveal-sticker">
                         <div class="memo-photo">
                             <img src="images/Gratitude 3.jpg" alt="Momen Berdua 3">
                         </div>
@@ -601,7 +692,7 @@
                     </div>
 					
 					<!-- Memo 4 -->
-                    <div class="memo-item">
+                    <div class="memo-item reveal-sticker">
                         <div class="memo-photo">
                             <img src="images/Gratitude 4.jpg" alt="Momen Berdua 4">
                         </div>
@@ -612,7 +703,7 @@
                     </div>
 					
 					<!-- Memo 5 -->
-                    <div class="memo-item">
+                    <div class="memo-item reveal-sticker">
                         <div class="memo-photo">
                             <img src="images/Gratitude 5.jpg" alt="Momen Berdua 5">
                         </div>
@@ -623,7 +714,7 @@
                     </div>
 					
 					<!-- Memo 6 -->
-                    <div class="memo-item">
+                    <div class="memo-item reveal-sticker">
                         <div class="memo-photo">
                             <img src="images/Gratitude 6.jpg" alt="Momen Berdua 6">
                         </div>
@@ -632,7 +723,7 @@
                             <p>Makasih sudah menjadi dirimu...<br>Wanita yang ku cinta dan puja...<br>Wanita pintar dan elegan...<br>Wanita yang memiliki empati yang sangat tinggi...<br>Wanita yang kuat menghadapi segala rintangan yang datang kedirinya...<br>Wanita terbaik yang pernah aku temui..</p>
                         </div>
                     </div>
-				<div class="personal-badge">✦ And the list goes on... ✦</div>
+				<div class="personal-badge reveal-fade-left">✦ And the list goes on... ✦</div>
                 </div>
 				</div>
         </section>
@@ -641,33 +732,49 @@
 
 		<div class="chapter-farewell-box">
 			<div class="farewell-divider">✦ 🏅 ✦</div>
-			<p class="farewell-text">
+			<p class="farewell-text target-reveal">
 				Dengan ini berakhirlah sudah chapter kehidupanmu di 42, saatnya menyambut chapter 43 dengan hati yang lebih tangguh, senyuman yang lebih cerah, dan sejuta harapan baru. Terima kasih sudah berjalan dan berjuang sejauh ini Tri.
 			</p>
 		</div>
 
 </section>
-
+<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 		<!-- SECTION PENUTUP: EFEK PERGANTIAN CHAPTER -->
 <section class="section chapter-closing-section">
     <div class="chapter-container">
         
-        <!-- Lembar Kiri: Chapter Lama Yang Menutup -->
-        <div class="chapter-page page-old">
-            <div class="page-content">
-                <span class="chapter-badge badge-closed">Closed</span>
-                <h3>Dengan ini,</h3>
-                <h2>Chapter 42</h2>
-                <p>resmi ditutup.</p>
+        <!-- Lembar Kiri: Chapter Lama Yang Menutup (Bisa Diklik) -->
+        <!-- 1. Pastikan ada id="interactive-book-page" untuk trigger JavaScript -->
+        <div class="chapter-page page-old" id="interactive-book-page">
+            
+            <!-- 2. Pastikan ada pembungkus ini agar animasi melipat/flip CSS bekerja sempurna -->
+            <div class="page-flip-wrapper">
+                <div class="page-content">
+                    <span class="chapter-badge badge-closed">Closed</span>
+                    <h3>Dengan ini,</h3>
+                    <h2>Chapter 42</h2>
+                    <p>resmi ditutup.</p>
+                </div>
+                
+                <!-- 3. PENANDA KLIK YANG TADI HILANG (Dimasukkan ke dalam wrapper kiri) -->
+                <div class="click-indicator">
+                    <span class="indicator-text">Buka Harian Baru</span>
+                    <span class="indicator-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                        </svg>
+                    </span>
+                </div>
             </div>
+
         </div>
         
         <!-- Pembatas Tengah Buku / Efek Lipatan -->
         <div class="chapter-spine"></div>
         
-        <!-- Lembar Kanan: Chapter Baru Yang Terbuka -->
+        <!-- Lembar Kanan: Chapter Baru (Isi tersembunyi berkat kelas khusus) -->
         <div class="chapter-page page-new">
-            <div class="page-content">
+            <div class="page-content chapter-43-content">
                 <span class="chapter-badge badge-welcome">Welcome</span>
                 <h2>Chapter 43</h2>
                 <p class="wishes-text">Selamat menempuh Chapter 43 dengan penuh bahagia...</p>
@@ -680,13 +787,13 @@
 
 <div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 	
-			<div class="combined-surprise-border">
+			
 
             <section class="section wishes-section" style="margin-top: 0; padding-top: 20px;">
-                <h2 class="section-title">A Special Letter & Surprise For You</h2>
-                <p class="section-subtitle">Ada satu surat dan kejutan terakhir yang sengaja gue simpan di dalam amplop ini. Klik untuk membuka ya.</p>
-                
-                <div class="envelope-wrapper">
+                <h2 class="section-title reveal-zoom-center">A Special Letter & Surprise For You</h2>
+				<p class="section-subtitle reveal-zoom">Ada satu surat dan kejutan terakhir yang sengaja gue simpan di dalam amplop ini. Klik untuk membuka ya.</p>
+				<div class="combined-surprise-border">             
+                <div class="envelope-wrapper reveal-zoom">
                     <div class="envelope" id="loveEnvelope" onclick="openEnvelope()">
                         <div class="envelope-flap"></div>
                         <div class="envelope-body"></div>
@@ -708,32 +815,34 @@
                         </div>
                     </div>
                 </div>
-            </section>
+
             
             <div class="surprise-section" style="margin-top: 40px; margin-bottom: 20px;">
-                
-                <div class="gift-box-trigger" id="giftTrigger" onclick="openSurpriseVideo()">
-                    <div class="gift-ribbon-top"></div>
-                    <div class="gift-icon">🎁</div>
-                    <h3>Ada satu kejutan terakhir untukmu...</h3>
-                    <p>Klik kado ini untuk membukanya</p>
-                </div>
+    
+		<!-- JavaScript sekarang mengubah textContent milik 'text-emoji' -->
+				<div class="gift-box-trigger" id="giftTrigger" onclick="openSurpriseVideo()">
+					<div class="gift-ribbon-top"></div>
+					<div class="gift-icon" id="icon-kado">
+						<span id="text-emoji">🎁</span>
+					</div>
+					<h3>Ada satu kejutan terakhir untukmu...</h3>
+					<p>Klik kado ini untuk membukanya</p>
+				</div>
 
-                <div class="video-panel-box d-none" id="videoPanel">
-                    <div class="video-frame-border">
-                        <video id="birthdayVideo" controls poster="images/Achievement 6.jpg">
-                            <source src="video/Ucapan.mp4" type="video/mp4">
-                            Browser kamu tidak mendukung pemutaran video ini.
-                        </video>
-                    </div>
-                    <div class="video-caption">
-                        <h4>Selamat Ulang Tahun! 🎂</h4>
-                        <p>Semoga suka dengan video ucapan sederhana yang aku buat ini ya...</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+				<div class="video-panel-box d-none" id="videoPanel">
+					<div class="video-frame-border">
+						<video id="birthdayVideo" controls poster="images/Achievement 6.jpg">
+							<source src="video/Ucapan.mp4" type="video/mp4">
+							Browser kamu tidak mendukung pemutaran video ini.
+						</video>
+					</div>
+					<div class="video-caption">
+						<h4>Selamat Ulang Tahun! 🎂</h4>
+						<p>Semoga suka dengan video ucapan sederhana yang aku buat ini ya...</p>
+					</div>
+				</div>
+			</div>
+				</section>
 		
 		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 		
@@ -747,13 +856,22 @@
 				<p class="signature">With love ❤<br>from<br>Dafi Luanda</p>
 		</div>
 		</section>
+		
+		<div class="wedding-sparkle">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 	
 	<!-- SECTION BEHIND THE SCENE (BTS) -->
 <section class="section bts-section">
     <div class="bts-title-container">
         <span class="bts-tag">Post-Credits Scene</span>
+
         <h3 class="bts-title">Behind The Scenes</h3>
+			<div class="bts-header-container">
+    <!-- Foto kecil sebelah kiri -->
+    <img src="images/Sticker 1.webp " class="bts-mini-photo bts-left" alt="BTS Left Decor">
 		<h2 class="bts-title">17 Days Activity</h2>
+			<!-- Foto kecil sebelah kanan -->
+    <img src="images/Sticker 2.webp" class="bts-mini-photo bts-right" alt="BTS Right Decor">
+	</div>	
         <p class="bts-subtitle">Sedikit cerita di balik layar proses pembuatan website ini...</p>
     </div>
 
@@ -845,125 +963,158 @@
 
 <!-- SCRIPT LOGIKA UNTUK KUPON DAN AMPLOP INTERAKTIF -->
     <script>
+	
+		// FUNGSI UTAMA: Murni memicu konfeti dan efek stiker saat FOTO PROFIL DIKLIK
+		function playClickInteraction(element) {
+			// 1. Jalankan pemutar suara bawaan
+			if (typeof playHoverSound === "function") {
+				playHoverSound(); 
+			}
+
+			// 2. Efek stiker membal pada foto profil
+			element.classList.add('clicked');
+
+			// 3. Sembunyikan petunjuk "Click me!"
+			var hint = document.querySelector('.click-hint-container');
+			if (hint) {
+				hint.style.opacity = '0';
+				hint.style.transition = 'opacity 0.4s ease';
+				setTimeout(function() { hint.style.display = 'none'; }, 400);
+			}
+
+			// 4. Pengaturan Jeda (Delay Duration) sebelum konfeti & teks muncul
+			const delayDuration = 500; 
+			
+			setTimeout(function() {
+				// --- Eksekusi Petasan Konfeti ---
+				const duration = 2.5 * 1000; 
+				const end = Date.now() + duration;
+				const weddingColors = ['#dfba9d', '#eecdab', '#faf6f0', '#6d5440'];
+
+				(function frame() {
+					confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0, y: 0.7 }, colors: weddingColors });
+					confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1, y: 0.7 }, colors: weddingColors });
+					if (Date.now() < end) { requestAnimationFrame(frame); }
+				}());
+
+				// --- Membuka Kontainer Surat ---
+				var hiddenContent = document.getElementById('hidden-content');
+				if (hiddenContent) {
+					hiddenContent.classList.remove('content-hidden');
+					hiddenContent.classList.add('content-show');
+					
+					// --- Efek Memunculkan Tulisan Secara Perlahan & Berurutan (Cascading) ---
+					var elementsToFade = hiddenContent.querySelectorAll('.fade-line, .closing, .elegant-divider-bottom, #containerTombol, .wedding-sparkle');
+					
+					elementsToFade.forEach(function(el, index) {
+						setTimeout(function() {
+							el.classList.add('show-element');
+						}, index * 450); // Jeda waktu antar baris muncul (450ms atau ~0.4 detik)
+					});
+				}
+
+			}, delayDuration);
+
+			// 5. Kembalikan ukuran frame foto ke normal
+			setTimeout(function() {
+				element.classList.remove('clicked');
+			}, 600);
+		}
+		
     // ==========================================================================
-    // 1. LOGIKA UTAMA: TOMBOL BUKA LEMBARAN KENANGAN
+    // LOGIKA UTAMA: TOMBOL BUKA LEMBARAN KENANGAN
     // ==========================================================================
-    function bukaSeluruhHalaman() {
-    var tombol = document.getElementById('containerTombol');
-    var konten = document.getElementById('kontenRahasia');
-    var musik = document.getElementById('backgroundMusic');
+		function bukaSeluruhHalaman() {
+			var tombol = document.getElementById('containerTombol');
+			var konten = document.getElementById('kontenRahasia');
+			var musik = document.getElementById('backgroundMusic');
 
-    // 1. Putar musik latar
-    if (musik) {
-        musik.volume = 0.4;
-        musik.play().catch(function(e) { console.log("Autoplay tertahan:", e); });
-    }
+			// 1. Putar musik latar
+			if (musik) {
+				musik.volume = 0.4;
+				musik.play().catch(function(e) { console.log("Autoplay tertahan:", e); });
+			}
 
-    // 2. NYALAKAN ANIMASI BUNGA JATUH (Bertahan selamanya)
-    startBlossomAnimation();
+			// 2. NYALAKAN ANIMASI BUNGA JATUH (Bertahan selamanya)
+			startBlossomAnimation();
 
-    // 3. Munculkan halaman bawah
-    konten.classList.add('buka-semua');
-    setTimeout(function() {
-        konten.classList.add('efek-muncul');
-        window.scrollBy({ top: 250, behavior: 'smooth' });
-    }, 50);
+			// 3. Munculkan halaman bawah
+			konten.classList.add('buka-semua');
+			setTimeout(function() {
+				konten.classList.add('efek-muncul');
+				window.scrollBy({ top: 250, behavior: 'smooth' });
+			}, 50);
 
-    // 4. Hilangkan tombol utama
-    tombol.style.display = 'none';
-}
+			// 4. Hilangkan tombol utama
+			tombol.style.display = 'none';
+		}
 
-// ==========================================================================
-// MESIN PEMBUAT KELOPAK BUNGA OTOMATIS (DENGAN UKURAN & KECEPATAN ACAK)
-// ==========================================================================
-function startBlossomAnimation() {
-    var container = document.getElementById('blossom-container');
-    if (!container) return;
+	// ==========================================================================
+	// MESIN PEMBUAT KELOPAK BUNGA OTOMATIS (DENGAN UKURAN & KECEPATAN ACAK)
+	// ==========================================================================
+		function startBlossomAnimation() {
+			var container = document.getElementById('blossom-container');
+			if (!container) return;
 
-    // Buat kelopak bunga baru setiap 300 milidetik
-    setInterval(function() {
-        var petal = document.createElement('div');
-        petal.classList.add('petal');
+			// Buat kelopak bunga baru setiap 300 milidetik
+			setInterval(function() {
+				var petal = document.createElement('div');
+				petal.classList.add('petal');
 
-        // Mengacak posisi horizontal awal bunga (dari kiri 0% sampai kanan 100% layar)
-        petal.style.left = Math.random() * window.innerWidth + 'px';
+				// Mengacak posisi horizontal awal bunga (dari kiri 0% sampai kanan 100% layar)
+				petal.style.left = Math.random() * window.innerWidth + 'px';
 
-        // Mengacak ukuran kelopak bunga (antara 8px sampai 15px) agar lebih natural
-        var size = (Math.random() * 7) + 8;
-        petal.style.width = size + 'px';
-        petal.style.height = size + 'px';
+				// Mengacak ukuran kelopak bunga (antara 8px sampai 15px) agar lebih natural
+				var size = (Math.random() * 7) + 8;
+				petal.style.width = size + 'px';
+				petal.style.height = size + 'px';
 
-        // Mengacak durasi jatuh bunga (antara 4 sampai 8 detik per kelopak)
-        petal.style.animationDuration = (Math.random() * 4) + 4 + 's';
+				// Mengacak durasi jatuh bunga (antara 4 sampai 8 detik per kelopak)
+				petal.style.animationDuration = (Math.random() * 4) + 4 + 's';
 
-        // Mengacak jeda mulai kemunculan bunga
-        petal.style.animationDelay = Math.random() * 2 + 's';
+				// Mengacak jeda mulai kemunculan bunga
+				petal.style.animationDelay = Math.random() * 2 + 's';
 
-        container.appendChild(petal);
+				container.appendChild(petal);
 
-        // Hapus elemen kelopak bunga yang sudah jatuh ke bawah agar RAM komputer/HP tidak jebol
-        setTimeout(function() {
-            petal.remove();
-        }, 8000);
+				// Hapus elemen kelopak bunga yang sudah jatuh ke bawah agar RAM komputer/HP tidak jebol
+				setTimeout(function() {
+					petal.remove();
+				}, 8000);
 
-    }, 300); // Angka 300 ini menentukan kerapatan bunga (makin kecil makin lebat bunganya)
-}
-
-    // ==========================================================================
-    // 2. LOGIKA KEJUTAN KADO & SINKRONISASI AUDIO / VIDEO
-    // ==========================================================================
-    function openSurpriseVideo() {
-        var gift = document.getElementById('giftTrigger');
-        var panel = document.getElementById('videoPanel');
-        var video = document.getElementById('birthdayVideo');
-        var musik = document.getElementById('backgroundMusic');
-
-        // Hilangkan kado dan munculkan panel video ucapan
-        gift.classList.add('d-none');
-        panel.classList.remove('d-none');
-
-        setTimeout(function() {
-            panel.classList.add('show');
-            
-            // Otomatis putar video kejutan
-            if (video) {
-                video.play();
-                
-                // KUNCI: Musik latar langsung otomatis pause saat video mulai berputar
-                if (musik) {
-                    musik.pause();
-                }
-            }
-        }, 50);
-    }
+			}, 300); // Angka 300 ini menentukan kerapatan bunga (makin kecil makin lebat bunganya)
+		}
 
     // ==========================================================================
-    // 3. EVENT LISTENER: MENJAGA LAGU AGAR TIDAK TABRAKAN DENGAN VIDEO
+    // LOGIKA KEJUTAN KADO & SINKRONISASI AUDIO / VIDEO
     // ==========================================================================
-    document.addEventListener("DOMContentLoaded", function() {
-        var video = document.getElementById('birthdayVideo');
-        var musik = document.getElementById('backgroundMusic');
+		function openSurpriseVideo() {
+			var gift = document.getElementById('giftTrigger');
+			var panel = document.getElementById('videoPanel');
+			var video = document.getElementById('birthdayVideo');
+			var musik = document.getElementById('backgroundMusic');
 
-        if (video && musik) {
-            
-            // JIKA VIDEO DI-PLAY MANUVAL (Astri tekan play lagi di video) -> Musik Pause
-            video.addEventListener('play', function() {
-                musik.pause();
-            });
+			// Hilangkan kado dan munculkan panel video ucapan
+			gift.classList.add('d-none');
+			panel.classList.remove('d-none');
 
-            // JIKA VIDEO DI-PAUSE (Astri pause video di tengah jalan) -> Musik Play Kembali
-            video.addEventListener('pause', function() {
-                musik.play().catch(function(e) { console.log(e); });
-            });
+			setTimeout(function() {
+				panel.classList.add('show');
+				
+				// Otomatis putar video kejutan
+				if (video) {
+					video.play();
+					
+					// KUNCI: Musik latar langsung otomatis pause saat video mulai berputar
+					if (musik) {
+						musik.pause();
+					}
+				}
+			}, 50);
+		}
 
-            // JIKA VIDEO SELESAI (Video ucapan habis) -> Musik Otomatis Play Kembali
-            video.addEventListener('ended', function() {
-                musik.play().catch(function(e) { console.log(e); });
-            });
-        }
-    });
         // 1. Fungsi untuk Mengklaim Kupon
-        function claimCoupon(buttonElement, couponName) {
+		function claimCoupon(buttonElement, couponName) {
             // Cari elemen kartu kupon pembungkusnya
             const couponCard = buttonElement.closest('.coupon-card');
             
@@ -978,81 +1129,281 @@ function startBlossomAnimation() {
         }
 
         // 2. Fungsi untuk Membuka Amplop Surat
-        function openEnvelope() {
+		function openEnvelope() {
             const envelope = document.getElementById('loveEnvelope');
             // Toggle kelas 'open' (jika diklik lagi bisa menutup atau membuka)
             envelope.classList.toggle('open');
         }
-		document.addEventListener("DOMContentLoaded", function () {
-    // SEKARANG DISESUAIKAN: Menargetkan langsung kotak bingkai foto kamu (.profile-frame)
-    const profileFrame = document.querySelector(".profile-frame");
-
-    if (profileFrame) {
-        // Buat pengintai scroll (Intersection Observer)
-        const observer = new IntersectionObserver((entries, observerInstance) => {
-            entries.forEach(entry => {
-                // Begitu bingkai foto lingkaranmu terdeteksi muncul di layar
-                if (entry.isIntersecting) {
-                    
-                    // JALANKAN KONFETI!
-                    triggerCelebration();
-                    
-                    // Matikan pengintai agar pesta konfeti hanya meledak 1 kali pas di-scroll
-                    observerInstance.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 }); // Memicu ketika 20% bagian lingkaran foto sudah masuk layar
-
-        // Mulai mengintai bingkai foto
-        observer.observe(profileFrame);
-    }
-});
+		
 
 // FUNGSI HUJAN KONFETI PREMIUM (EMAS & KREM SUASANA WEDDING)
-function triggerCelebration() {
-    const duration = 2.5 * 1000; 
-    const end = Date.now() + duration;
-    const weddingColors = ['#dfba9d', '#eecdab', '#faf6f0', '#6d5440'];
+		function triggerCelebration() {
+			// Atur waktu tunda di sini (dalam milidetik). 
+			// Contoh: 500 = 0.5 detik, 1000 = 1 detik.
+			const delayDuration = 1000; 
 
-    (function frame() {
-        confetti({
-            particleCount: 3,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0, y: 0.7 },
-            colors: weddingColors
-        });
-        confetti({
-            particleCount: 3,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1, y: 0.7 },
-            colors: weddingColors
-        });
+			setTimeout(function() {
+				const duration = 2.5 * 1000; 
+				const end = Date.now() + duration;
+				const weddingColors = ['#dfba9d', '#eecdab', '#faf6f0', '#6d5440'];
 
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
-    }());
-}
-function playHoverSound() {
-    var sound = document.getElementById('hoverSound');
-    if (sound) {
-        sound.currentTime = 0; // Mengulang suara dari detik ke-0 setiap kali kursor masuk
-        sound.volume = 0.3;    // Set volume agak pelan (30%) agar tetap elegan dan tidak mengagetkan
-        sound.play().catch(function(e) {
-            console.log("Suara hover tertahan aturan browser sebelum ada klik utama:", e);
-        });
-    }
-}
-<!-- // Ganti 'rahasiahariini' dengan password yang kamu inginkan -->
-    <!-- var password = "AstriDafi1703"; -->
-    <!-- var input = prompt("Halaman ini dilindungi. Masukkan password untuk masuk:"); -->
-    
-    <!-- if (input !== password) { -->
-        <!-- alert("Password salah! Kamu tidak bisa mengakses halaman ini."); -->
-        <!-- window.location.href = "https://www.google.com"; // Tendang ke Google kalau salah -->
-    <!-- } -->
+				(function frame() {
+					confetti({
+						particleCount: 3,
+						angle: 60,
+						spread: 55,
+						origin: { x: 0, y: 0.7 },
+						colors: weddingColors
+					});
+					confetti({
+						particleCount: 3,
+						angle: 120,
+						spread: 55,
+						origin: { x: 1, y: 0.7 },
+						colors: weddingColors
+					});
+
+					if (Date.now() < end) {
+						requestAnimationFrame(frame);
+					}
+				}());
+			}, delayDuration);
+		}
+		
+		function playHoverSound() {
+			var sound = document.getElementById('hoverSound');
+			if (sound) {
+				sound.currentTime = 0; // Mengulang suara dari detik ke-0 setiap kali kursor masuk
+				sound.volume = 0.3;    // Set volume agak pelan (30%) agar tetap elegan dan tidak mengagetkan
+				sound.play().catch(function(e) {
+					console.log("Suara hover tertahan aturan browser sebelum ada klik utama:", e);
+				});
+			}
+		}
+
+		document.addEventListener("DOMContentLoaded", function() {
+			var targets = document.querySelectorAll('.reveal-down, .reveal-up, .reveal-left, .reveal-right, .reveal-zoom, .reveal-left-center, .reveal-right-center, .reveal-zoom-center, .reveal-fade-left, .reveal-fade-left-center, .reveal-rotate-zoom, .reveal-blur-in, .reveal-clip-horizontal, .reveal-sticker, .reveal-sticker-center');
+			if (targets.length > 0) {
+				var observer = new IntersectionObserver(function(entries, self) {
+					entries.forEach(function(entry) {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('active');
+							self.unobserve(entry.target); // Hentikan pantauan setelah aktif
+						}
+					});
+				}, {
+					/* 
+					   KUNCI UTAMA TENGAH LAYAR:
+					   - -40% di atas (top) dan -40% di bawah (bottom) akan memotong area sensor.
+					   - Sensor hanya akan aktif di sisa 20% area tepat di tengah-tengah layar browser.
+					*/
+					rootMargin: '-60% 0px -60% 0px', 
+					threshold: 0 // Elemen menyentuh area tengah sedikit saja langsung menyala
+				});
+
+				targets.forEach(function(target) {
+					observer.observe(target);
+				});
+			}
+		});
+
+		<!-- document.addEventListener("DOMContentLoaded", function () { -->
+			<!-- // SEKARANG DISESUAIKAN: Menargetkan langsung kotak bingkai foto kamu (.profile-frame) -->
+				<!-- const profileFrame = document.querySelector(".profile-frame"); -->
+
+					<!-- if (profileFrame) { -->
+						<!-- // Buat pengintai scroll (Intersection Observer) -->
+						<!-- const observer = new IntersectionObserver((entries, observerInstance) => { -->
+							<!-- entries.forEach(entry => { -->
+								<!-- // Begitu bingkai foto lingkaranmu terdeteksi muncul di layar -->
+								<!-- if (entry.isIntersecting) { -->
+									
+									<!-- // JALANKAN KONFETI! -->
+									<!-- triggerCelebration(); -->
+									
+									<!-- // Matikan pengintai agar pesta konfeti hanya meledak 1 kali pas di-scroll -->
+									<!-- observerInstance.unobserve(entry.target); -->
+								<!-- } -->
+							<!-- }); -->
+						<!-- }, { threshold: 0.2 }); // Memicu ketika 20% bagian lingkaran foto sudah masuk layar -->
+
+						<!-- // Mulai mengintai bingkai foto -->
+						<!-- observer.observe(profileFrame); -->
+					<!-- } -->
+				<!-- }); -->
+					
+			// ==========================================================================
+			// EVENT LISTENER: MENJAGA LAGU AGAR TIDAK TABRAKAN DENGAN VIDEO
+			// ==========================================================================
+		document.addEventListener("DOMContentLoaded", function() {
+				var video = document.getElementById('birthdayVideo');
+				var musik = document.getElementById('backgroundMusic');
+
+				if (video && musik) {
+					
+					// JIKA VIDEO DI-PLAY MANUVAL (Astri tekan play lagi di video) -> Musik Pause
+					video.addEventListener('play', function() {
+						musik.pause();
+					});
+
+					// JIKA VIDEO DI-PAUSE (Astri pause video di tengah jalan) -> Musik Play Kembali
+					video.addEventListener('pause', function() {
+						musik.play().catch(function(e) { console.log(e); });
+					});
+
+					// JIKA VIDEO SELESAI (Video ucapan habis) -> Musik Otomatis Play Kembali
+					video.addEventListener('ended', function() {
+						musik.play().catch(function(e) { console.log(e); });
+					});
+				}
+			});
+			
+		document.addEventListener("DOMContentLoaded", function() {
+    // 1. Ambil semua kartu achievement
+			const achievementCards = document.querySelectorAll('.achievement-card');
+			
+			if (achievementCards.length > 0) {
+				// 2. Buat konfigurasi observer (memicu ketika 15% bagian kontainer terlihat)
+				const observerOptions = {
+					root: null,
+					threshold: 0.15,
+					rootMargin: "0px"
+				};
+
+				const revealObserver = new IntersectionObserver(function(entries, observer) {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							// Munculkan kartu satu per satu dengan jeda 150ms per kartu (Staggered effect)
+							achievementCards.forEach((card, index) => {
+								setTimeout(() => {
+									card.classList.add('reveal-active');
+								}, index * 300); // Selisih waktu kemunculan antar kartu
+							});
+							
+							// Berhenti mengamati setelah animasi pertama kali terpicu
+							observer.unobserve(entry.target);
+						}
+					});
+				}, observerOptions);
+
+				// 3. Amati kontainer induk dari kartu-kartu tersebut
+				const container = document.querySelector('.achievement-flex-container');
+				if (container) {
+					revealObserver.observe(container);
+				}
+			}
+		});
+		document.addEventListener("DOMContentLoaded", function() {
+			const revealItems = document.querySelectorAll('.target-reveal');
+			
+			if (revealItems.length > 0) {
+				const observer = new IntersectionObserver((entries) => {
+					let delayIndex = 0;
+					
+					entries.forEach(entry => {
+						if (entry.isIntersecting && !entry.target.classList.contains('reveal-active')) {
+							// Eksekusi bertahap naik satu per satu secara lambat
+							setTimeout(() => {
+								entry.target.classList.add('reveal-active');
+							}, delayIndex * 1200); // <-- Jeda antar baris ungkapan/kartu diatur 1.2 detik
+							
+							delayIndex++;
+							// Berhenti memantau elemen ini jika sudah menyala
+							observer.unobserve(entry.target);
+						}
+					});
+				}, {
+					threshold: 0.1, // Mulai memicu animasi saat 10% bagian elemen terlihat di layar
+					rootMargin: "0px 0px -50px 0px" // Memberikan ruang potong sedikit di bawah layar agar natural
+				});
+
+				revealItems.forEach(item => {
+					observer.observe(item);
+				});
+			}
+		});
+		document.addEventListener("DOMContentLoaded", function() {
+			// Mengambil container kolase foto
+			const collageContainer = document.querySelector('.photo-collage-container');
+			// Mengambil semua item foto di dalamnya
+			const collageItems = document.querySelectorAll('.target-collage-item');
+			
+			if (collageContainer && collageItems.length > 0) {
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						// Ketika area kolase mulai terlihat di layar
+						if (entry.isIntersecting) {
+							collageItems.forEach((item, index) => {
+								// Memunculkan gambar satu per satu secara berurutan
+								setTimeout(() => {
+									item.classList.add('reveal-active');
+								}, index * 600); // <-- Jeda antar foto (0.6 detik). Ubah ke 1000 jika ingin jeda lebih lama lagi.
+							});
+							
+							// Hentikan pemantauan setelah animasi terpicu agar tidak mengulang
+							observer.unobserve(entry.target);
+						}
+					});
+				}, {
+					threshold: 0.15 // Animasi jalan saat 15% area kolase masuk layar
+				});
+
+				observer.observe(collageContainer);
+			}
+		});
+		
+		document.addEventListener("DOMContentLoaded", function() {
+			// Mengambil elemen halaman kiri (Chapter 42) dan kontainer utama buku
+			const clickablePage = document.getElementById('interactive-book-page');
+			const chapterContainer = document.querySelector('.chapter-container');
+			
+			if (clickablePage && chapterContainer) {
+				clickablePage.addEventListener('click', function() {
+					// Memicu balik halaman sekaligus memudarkan isi Chapter 43 secara staggered
+					chapterContainer.classList.add('flip-active');
+				});
+			}
+		});
+		
+		document.addEventListener("DOMContentLoaded", function () {
+			const giftBoxTrigger = document.getElementById("giftTrigger");
+			const giftIcon = document.querySelector(".gift-icon");
+			// Target spesifik ke span emoji agar strukturnya tidak hancur
+			const textEmoji = document.getElementById("text-emoji");
+
+			if (giftBoxTrigger && giftIcon && textEmoji) {
+				// A. DETEKSI SCROLL JATUH (Intersection Observer)
+				const observer = new IntersectionObserver(function (entries, observerInstance) {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							giftIcon.classList.add("animate-drop");
+							observerInstance.unobserve(entry.target);
+						}
+					});
+				}, {
+					threshold: 0.2
+				});
+
+				observer.observe(giftBoxTrigger);
+
+				// B. DETEKSI HOVER YANG AMAN (Mengubah isi SPAN, bukan menghapus elemen)
+				giftBoxTrigger.addEventListener("mouseenter", function () {
+					textEmoji.textContent = "🎉"; 
+				});
+
+				giftBoxTrigger.addEventListener("mouseleave", function () {
+					textEmoji.textContent = "🎁"; 
+				});
+			}
+		});
+		<!-- // Ganti 'rahasiahariini' dengan password yang kamu inginkan -->
+			<!-- var password = "AstriDafi1703"; -->
+			<!-- var input = prompt("Halaman ini dilindungi. Masukkan password untuk masuk:"); -->
+			
+			<!-- if (input !== password) { -->
+				<!-- alert("Password salah! Kamu tidak bisa mengakses halaman ini."); -->
+				<!-- window.location.href = "https://www.google.com"; // Tendang ke Google kalau salah -->
+			<!-- } -->
 	
     </script>
 

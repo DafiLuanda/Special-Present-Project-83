@@ -68,32 +68,121 @@ body {
     border: 1px solid #f3ebe4;
 }
 
-/* TATA LETAK FOTO UTAMA PALING ATAS */
+/* ==========================================================================
+   TATA LETAK FOTO UTAMA PALING ATAS (VERSI INTERAKSI KLIK & PETUNJUK)
+   ========================================================================== */
 .top-profile-container {
+    position: relative; /* Ditambahkan agar menjadi acuan posisi petunjuk */
     display: flex;
     flex-direction: column;
     align-items: center; /* Mengunci posisi tepat di tengah-tengah layar */
     justify-content: center;
-    margin: 30px auto 15px auto; /* Jarak spasi atas dan bawah foto */
+    margin: 60px auto 15px auto; /* Jarak atas ditambah sedikit (dari 30px ke 60px) untuk ruang teks "Click me!" */
     text-align: center;
-	background-color: #faf6f0;
+    background-color: #faf6f0;
 }
 
+/* --- DEKORASI PETUNJUK "CLICK ME" & PANAH --- */
+.click-hint-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0px; /* Jarak antara panah dengan bingkai foto */
+}
+
+.click-hint-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #6d5440; /* Diselaraskan dengan warna teks .profile-sparkle milikmu */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.click-arrows {
+    display: flex;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.arrow-down {
+    display: inline-block;
+    font-size: 1.1rem;
+    color: #6d5440;
+    /* Membuat panah melompat-lompat kecil secara bergelombang */
+    animation: bounceArrow 1.2s infinite ease-in-out;
+}
+
+/* Mengatur jeda lompatan tiap panah */
+.arrow-down:nth-child(2) { animation-delay: 0.2s; }
+.arrow-down:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounceArrow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+/* --- FRAME FOTO UTAMA --- */
 .profile-frame {
-    width: 160px;  /* Ukuran diameter foto */
+    width: 160px;  /* Ukuran diameter foto tetap */
     height: 160px;
     border-radius: 50%; /* Membuat bentuk lingkaran sempurna */
     overflow: hidden;
     border: 4px solid #ffffff; /* Bingkai putih tebal khas portrait */
     box-shadow: 0 10px 25px rgba(109, 84, 64, 0.15); /* Bayangan lembut */
     background-color: #faf6f0;
+    cursor: pointer; /* Mengubah kursor menjadi telunjuk tanda bisa diklik */
     
-    /* MODIFIKASI: Menjalankan animasi muncul (profileFadeIn) SEKALIGUS animasi mengapung (floatAnimation) bersamaan */
+    /* MODIFIKASI TRANSISI: Ditambahkan agar efek membal saat diklik (scale & rotate) berjalan super mulus */
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.3), filter 0.6s ease;
+    
+    /* Animasi muncul & mengapung bawaanmu tetap dipertahankan */
     animation: 
         profileFadeIn 1.5s ease-out forwards,
-        floatAnimation 4s ease-in-out infinite 1.5s; /* Animasi mengapung baru jalan setelah efek muncul selesai */
+        floatAnimation 4s ease-in-out infinite 1.5s; 
     
     opacity: 0; /* Dimulai dari transparan */
+}
+
+/* Kontainer luar saat tersembunyi */
+.content-hidden {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-height 0.5s ease, visibility 0.5s;
+}
+
+/* Kontainer luar saat terbuka */
+.content-show {
+    opacity: 1;
+    visibility: visible;
+    max-height: 2000px; /* Membuka ruang agar surat bisa tampil penuh */
+}
+
+/* Keadaan awal baris teks: transparan dan agak bergeser sedikit ke bawah */
+.fade-line {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Keadaan awal tombol & penutup surat: transparan juga */
+.closing, .elegant-divider-bottom, #containerTombol, .wedding-sparkle {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+/* Class aktif untuk memicu teks muncul sempurna */
+.fade-line.show-element, .closing.show-element, .elegant-divider-bottom.show-element, #containerTombol.show-element {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* KONDISI SAAT DIKLIK: Efek kejutan stiker menempel (Nge-plak membal & miring sedikit) */
+.profile-frame.reveal-sticker-click.clicked {
+    /* Menggunakan !important agar efek hentakan klik berhasil menimpa (override) animasi float untuk sementara */
+    transform: scale(1.08) rotate(-5deg) !important;
+    box-shadow: 0 15px 30px rgba(109, 84, 64, 0.25) !important;
 }
 
 .profile-frame img {
@@ -433,13 +522,12 @@ h1, h2, h3, .section-title {
 .hero-section {
     background: linear-gradient(135deg, #f7d6c8 0%, #f5e5d9 100%);
     height: 100vh;
-	font-family: 'Cormorant Garamond', serif;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 20px;
-	font-family: 'Dancing Script', cursive;
+    font-family: 'Dancing Script', cursive;
 }
 
 .hero-subtitle {
@@ -449,18 +537,85 @@ h1, h2, h3, .section-title {
     color: #8a6552;
 }
 
+/* Pembungkus judul utama */
+.title-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Jarak aman bintang dari teks */
+    margin: 10px 0;
+}
+
 .hero-title {
     font-family: 'Dancing Script', cursive;
     font-size: 4.5rem;
-    color: #b55b4c;
-    margin: 10px 0;
-    animation: float 3s ease-in-out infinite;
+    margin: 0;
+    line-height: 1.2;
+    
+    /* Efek Kilau Cahaya (Shimmer) */
+    background: linear-gradient(to right, #b55b4c 20%, #eecdab 40%, #faf6f0 50%, #eecdab 60%, #b55b4c 80%);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shineEffect 3s linear infinite;
 }
 
+/* Nama Astri Fitriani dibuat mengapung */
 .hero-name {
     font-size: 2.5rem;
     font-weight: 600;
     color: #6d5440;
+    margin-top: 15px;
+    display: block;
+    animation: float 3.5s ease-in-out infinite; 
+}
+
+/* --- MEMBUAT BINTANG EMAS KUSTOM (ANTI-TRANSPARAN) --- */
+.custom-sparkle {
+    display: inline-block;
+    width: 20px;   /* Lebar bintang */
+    height: 20px;  /* Tinggi bintang */
+    background-color: #dcb38f; /* Warna emas hangat senada tema */
+    /* Membuat bentuk bintang belah ketupat melengkung mewah */
+    clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+    opacity: 0;
+}
+
+.star-left {
+    animation: starBlinkLeft 3.5s ease-in-out infinite;
+}
+
+.star-right {
+    animation: starBlinkRight 3.5s ease-in-out infinite 1.75s; /* Jeda berkedip bergantian */
+}
+
+/* ==========================================================
+   DAFTAR MODUL ANIMASI (KEYFRAMES)
+   ========================================================== */
+
+/* Sapuan kilau teks */
+@keyframes shineEffect {
+    to { background-position: 200% center; }
+}
+
+/* Animasi mengapung yang terpasang di nama */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* Animasi Bintang Kiri */
+@keyframes starBlinkLeft {
+    0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+    40%, 60% { opacity: 1; transform: scale(1.3) rotate(15deg); }
+}
+
+/* Animasi Bintang Kanan */
+@keyframes starBlinkRight {
+    0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+    40%, 60% { opacity: 1; transform: scale(1.3) rotate(-15deg); }
 }
 
 /* 2. OPENING */
@@ -1098,6 +1253,37 @@ h1, h2, h3, .section-title {
 	transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;	
 }
 
+/* ==========================================================
+   ACHIEVEMENTS SECTION (DENGAN EFEK HOVER & SCROLL REVEAL)
+   ========================================================== */
+
+/* State Awal Kartu: Tersembunyi & sedikit bergeser ke bawah */
+.achievement-card {
+    background: #ffffff;
+    border: 1px solid transparent; /* Atur border awal jika kamu menggunakan border-color saat hover */
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    /* Efek transisi super mulus untuk hover & kemunculan scroll */
+    opacity: 0;
+    transform: translateY(40px);
+    
+    /* DI SINI YANG DIUBAH: Kita lambatkan gerakan meluncurnya menjadi 4.0s (atau ganti 6.0s jika ingin lebih lambat lagi) */
+    transition: opacity 4.0s cubic-bezier(0.165, 0.84, 0.44, 1),
+                transform 4.0s cubic-bezier(0.165, 0.84, 0.44, 1),
+                box-shadow 1.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+                border-color 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* State Aktif: Ketika kartu terdeteksi oleh JavaScript saat di-scroll */
+.achievement-card.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Interaksi saat Kartu di-Hover */
 .achievement-flex-container .achievement-card:hover {
     transform: translateY(-6px); /* Kartu terangkat ke atas */
     box-shadow: 0 12px 25px rgba(109, 84, 64, 0.12); /* Bayangan melebar lembut */
@@ -1112,11 +1298,19 @@ h1, h2, h3, .section-title {
     border-radius: 15px 15px 0 0; /* Menyesuaikan lengkungan border atas kartu */
 }
 
+/* Elemen Gambar di dalam Wrapper */
 .achievement-img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover; 
     display: block;
+    /* SUPER LAMBAT: Efek zoom-in sekarang berjalan sangat tenang selama 2.8 detik */
+    transition: transform 10s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Efek Zoom-In Gambar: Terpicu secara dinamis ketika kartu induk di-hover */
+.achievement-card:hover .achievement-img-wrapper img {
+    transform: scale(1.08); /* Gambar sedikit membesar tanpa merusak border radius karena overflow: hidden */
 }
 
 /* Mengatur area teks */
@@ -1144,6 +1338,35 @@ h1, h2, h3, .section-title {
     .achievement-flex-container .achievement-card {
         width: 100%; /* Kartu memenuhi lebar layar HP */
     }
+}
+
+/* State Awal: Tersembunyi di bawah */
+.target-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    /* DURASI LAMBAT: Diatur 2.5 detik agar meluncur naiknya sangat tenang */
+    transition: opacity 2.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+                transform 2.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* State Aktif: Dipicu oleh JavaScript */
+.target-reveal.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* State Awal: Setiap foto kolase disembunyikan dan diturunkan sedikit */
+.target-collage-item {
+    opacity: 0;
+    transform: translateY(25px);
+    /* DURASI LAMBAT: 2 detik untuk animasi memudar dan meluncur naik */
+    transition: opacity 2.0s cubic-bezier(0.165, 0.84, 0.44, 1),
+                transform 2.0s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* State Aktif: Ketika kelas reveal-active ditambahkan oleh JavaScript */
+.target-collage-item.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 4. RANDOMNESS */
@@ -1727,8 +1950,9 @@ h1, h2, h3, .section-title {
    GAYA KATA-KATA PERPISAHAN AKHIR CHAPTER 42
    ========================================================================== */
 
+/* Gaya dasar kotak farewell kamu (sesuaikan jika kamu punya style sendiri) */
 .chapter-farewell-box {
-    max-width: 650px;
+        max-width: 650px;
     margin: 50px auto 10px auto; /* Memberi jarak atas yang pas setelah baris kartu */
     text-align: center;
     padding: 25px 20px;
@@ -1740,37 +1964,21 @@ h1, h2, h3, .section-title {
     box-shadow: 0 4px 10px rgba(109, 84, 64, 0.02);
 }
 
-/* Pembatas Simbol Medal Atas Teks */
 .farewell-divider {
-    font-size: 1.2rem;
     color: #dfba9d;
-    margin-bottom: 12px;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
     letter-spacing: 4px;
 }
 
-/* Pengaturan Teks Kutipan */
 .farewell-text {
-    font-family: 'Cormorant Garamond', serif !important;
-    font-style: italic !important;
-    font-size: 1.25rem !important;
-    line-height: 1.7 !important;
-    color: #6d5440 !important;
-    margin: 0;
-}
-
-/* Responsif untuk HP agar teks tidak terlalu rapat */
-@media (max-width: 768px) {
-    .chapter-farewell-box {
-        margin: 40px 10px 10px 10px;
-        padding: 20px 15px;
-    }
-    .farewell-text {
-        font-size: 1.15rem !important;
-    }
+    color: #8a7665;
+    font-size: 1rem;
+    line-height: 1.8;
 }
 
 /* ==========================================================================
-   GAYA PENUTUP: SIMBOLIS PERGANTIAN CHAPTER (BENTUK JURNAL BUKU)
+   GAYA PENUTUP: SIMBOLIS PERGANTIAN CHAPTER VIA KLIK (3D PAGE FLIP)
    ========================================================================== */
 
 .chapter-closing-section {
@@ -1778,7 +1986,7 @@ h1, h2, h3, .section-title {
     justify-content: center;
     align-items: center;
     padding: 60px 20px;
-    background-color: transparent; /* Biar menyatu dengan background mading utama */
+    background-color: transparent;
 }
 
 /* Wadah Utama Buku/Jurnal */
@@ -1786,38 +1994,79 @@ h1, h2, h3, .section-title {
     display: flex;
     max-width: 800px;
     width: 100%;
+    height: 380px; 
     background: #ffffff;
     border-radius: 16px;
     box-shadow: 0 15px 40px rgba(109, 84, 64, 0.1);
     border: 1px solid #f2eade;
-    overflow: hidden;
     position: relative;
+    perspective: 2000px; 
 }
 
 /* Gaya Dasar untuk Setiap Halaman Buku */
 .chapter-page {
     flex: 1;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Kontainer konten agar tetap presisi di tengah halaman */
+.page-content {
+    width: 100%;
+    height: 100%;
     padding: 50px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: relative;
     box-sizing: border-box;
 }
 
-/* --- HALAMAN KIRI (CHAPTER 42: SELESAI/TUTUP) --- */
+/* --- HALAMAN KIRI (CHAPTER 42) --- */
 .page-old {
-    background-color: #fcfaf7; /* Warna kertas agak usang/vintage */
-    filter: grayscale(20%);     /* Memberikan efek masa lalu yang syahdu */
+    z-index: 3;
+    border-radius: 16px 0 0 16px;
+    background-color: transparent;
+    cursor: pointer; /* Mengubah kursor jadi tangan penunjuk */
+}
+
+/* Kertas Halaman Kiri */
+.page-old .page-flip-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #fcfaf7; 
+    filter: grayscale(20%);    
+    border-radius: 16px 0 0 16px;
+    position: relative;
+    
+    transform-origin: right center; 
+    backface-visibility: hidden;   
+    
+    /* Waktu membalik halaman saat diklik (Tetap lambat & anggun) */
+    transition: transform 3.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                opacity 2.5s ease, 
+                box-shadow 0.3s ease;
+}
+
+/* EFEK HOVER: Saat halaman didekati, beri efek bayangan seolah halaman siap dibuka */
+.page-old:hover .page-flip-wrapper {
+    box-shadow: inset -10px 0 20px rgba(109, 84, 64, 0.04), -5px 5px 15px rgba(0,0,0,0.05);
+}
+
+/* KETIKA DIKLIK (DIPICU JS): Halaman melipat ke kiri */
+.chapter-container.flip-active .page-old .page-flip-wrapper {
+    transform: rotateY(-180deg);
+    opacity: 0;
+    pointer-events: none; /* Cegah klik ganda setelah melipat */
 }
 
 .page-old h2 {
     font-family: 'Cormorant Garamond', serif !important;
     font-size: 2.4rem;
     color: #8c7a6b;
-    text-decoration: line-through; /* Efek simbolis coret halus menandakan selesai */
+    text-decoration: line-through;
     text-decoration-color: #d4a373;
     margin: 10px 0;
 }
@@ -1830,9 +2079,76 @@ h1, h2, h3, .section-title {
     text-align: center !important;
 }
 
-/* --- HALAMAN KANAN (CHAPTER 43: BARU/BERSINAR) --- */
+/* --- ORNAMEN PENANDA KLIK (POJOK KANAN BAWAH HALAMAN KIRI) --- */
+.click-indicator {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.75;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    animation: pulseIndicator 2s infinite ease-in-out; /* Efek berdenyut lembut */
+}
+
+.page-old:hover .click-indicator {
+    opacity: 1;
+    transform: translateX(-3px); /* Sedikit bergeser menarik perhatian */
+}
+
+.indicator-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #8c7a6b;
+}
+
+.indicator-icon {
+    display: flex;
+    align-items: center;
+    color: #d4a373;
+}
+
+/* Animasi hilangkan penanda klik saat buku mulai membalik */
+.chapter-container.flip-active .click-indicator {
+    display: none;
+}
+
+/* --- HALAMAN KANAN (CHAPTER 43) --- */
 .page-new {
-    background-color: #ffffff; /* Lebih terang benderang */
+    background-color: #ffffff;
+    border-radius: 0 16px 16px 0;
+    z-index: 1;
+}
+
+/* KEADAAN AWAL: Sembunyikan total semua elemen anak di dalam halaman kanan sebelum klik */
+.page-new .page-content > * {
+    opacity: 0 !important;
+    transform: translateY(15px);
+    transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* KEADAAN AKTIF: Tampilkan kembali isi konten saat halaman kiri sudah diklik (.flip-active) */
+.chapter-container.flip-active .page-new .page-content > * {
+    opacity: 1 !important;
+    transform: translateY(0);
+}
+
+/* Efek kemunculan berurutan (Staggered) agar transisi terasa hidup dan premium */
+.chapter-container.flip-active .page-new .page-content .chapter-badge {
+    transition-delay: 0.2s;
+}
+.chapter-container.flip-active .page-new .page-content h2 {
+    transition-delay: 0.5s;
+}
+.chapter-container.flip-active .page-new .page-content .wishes-text {
+    transition-delay: 0.8s;
+}
+.chapter-container.flip-active .page-new .page-content .wedding-sparkle {
+    transition-delay: 1.1s;
 }
 
 .page-new h2 {
@@ -1840,11 +2156,10 @@ h1, h2, h3, .section-title {
     font-size: 2.8rem;
     color: #4a3f35;
     margin: 10px 0;
-    animation: glowText 2s ease-in-out infinite alternate; /* Efek teks bersinar lembut */
 }
 
 .page-new .wishes-text {
-    font-family: 'Cormorant Garamond', serif !important; /* Diubah ke Serif biar puitis */
+    font-family: 'Cormorant Garamond', serif !important;
     font-style: italic !important;
     font-size: 1.15rem !important;
     font-weight: 400 !important;
@@ -1853,7 +2168,15 @@ h1, h2, h3, .section-title {
     line-height: 1.6 !important;
 }
 
-/* --- ORNAMEN EMBLEM (BADGE) DI ATAS TEXT --- */
+/* Sisa hiasan bintang bawah mading */
+.wedding-sparkle {
+    margin-top: 15px;
+    color: #d4a373;
+    letter-spacing: 5px;
+    font-size: 0.9rem;
+}
+
+/* --- DEKORASI TENGAH (SPINE) & BADGE --- */
 .chapter-badge {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.7rem;
@@ -1863,54 +2186,47 @@ h1, h2, h3, .section-title {
     border-radius: 20px;
     font-weight: 500;
 }
+.badge-closed { background-color: #f0e6df; color: #a39284; }
+.badge-welcome { background-color: #eecdab; color: #5c4a3c; box-shadow: 0 2px 8px rgba(238, 205, 171, 0.4); }
 
-.badge-closed {
-    background-color: #f0e6df;
-    color: #a39284;
-}
-
-.badge-welcome {
-    background-color: #eecdab; /* Warna emas pastel hangat */
-    color: #5c4a3c;
-    box-shadow: 0 2px 8px rgba(238, 205, 171, 0.4);
-}
-
-/* --- GARIS TENGAH JILID BUKU (SPINE) --- */
 .chapter-spine {
     width: 2px;
     background: linear-gradient(to bottom, #ecdcc9, #dfcdb9, #ecdcc9);
     position: relative;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    z-index: 5;
+}
+.chapter-spine::before { content: ''; position: absolute; top: 0; left: -15px; width: 15px; height: 100%; background: linear-gradient(to right, transparent, rgba(109, 84, 64, 0.03)); }
+.chapter-spine::after { content: ''; position: absolute; top: 0; right: -15px; width: 15px; height: 100%; background: linear-gradient(to left, transparent, rgba(109, 84, 64, 0.03)); }
+
+/* --- KEYFRAMES ANIMASI BERDENYUT --- */
+@keyframes pulseIndicator {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.03); opacity: 1; }
 }
 
-/* Efek Bayangan lipatan buku di tengah */
-.chapter-spine::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -15px;
-    width: 15px;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(109, 84, 64, 0.03));
-}
-
-.chapter-spine::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -15px;
-    width: 15px;
-    height: 100%;
-    background: linear-gradient(to left, transparent, rgba(109, 84, 64, 0.03));
-}
-
-/* Aksen Kilau Bintang di Akhir Teks */
 .wedding-sparkle {
-    color: #dfba9d;
-    font-size: 0.8rem;
-	text-align:Center;
-    margin-top: 15px;
-    letter-spacing: 4px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important; /* PAKSA MENYALA: Mencegah efek opacity: 0 bawaan JS jika dia terimbas */
+    
+    color: #dfba9d !important;
+    font-size: 0.5 rem !important;
+    text-align: center !important;
+    letter-spacing: 6px !important;
+    
+    /* Membuat jarak aman yang luas agar kelihatan di sela-sela section */
+    margin: 30px auto !important; 
+    padding: 20px 0 !important;
+    width: 100% !important;
+    
+    /* Naikkan ke lapisan paling depan */
+    position: relative !important;
+    z-index: 9999 !important;
+    
+    /* Matikan transisi atau animasi apa pun yang merusaknya */
+    transform: none !important;
+    transition: none !important;
 }
 
 /* Animasi Teks Menyala Halus untuk Chapter Baru */
@@ -1939,13 +2255,12 @@ h1, h2, h3, .section-title {
         display: none; /* Hilangkan bayangan vertikal di HP */
     }
 }
-
 /* ==========================================================================
-   CSS PANEL KEJUTAN VIDEO
+   CSS PANEL KEJUTAN VIDEO (MURNI VISUAL - NO COMPLICATED HOVER LOGIC)
    ========================================================================== */
 .surprise-section {
     max-width: 650px;
-    margin: 60px auto 100px auto;
+    margin: 40px auto 20px auto;
     padding: 0 20px;
     text-align: center;
 }
@@ -1959,8 +2274,8 @@ h1, h2, h3, .section-title {
     cursor: pointer;
     position: relative;
     box-shadow: 0 10px 30px rgba(109, 84, 64, 0.05);
-    transition: all 0.4s ease;
-    animation: giftFloat 3s ease-in-out infinite; /* Efek melayang manis */
+    transition: transform 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
+    animation: giftFloat 3s ease-in-out infinite; 
 }
 
 .gift-box-trigger:hover {
@@ -1970,10 +2285,20 @@ h1, h2, h3, .section-title {
 }
 
 .gift-icon {
-    font-size: 3.5rem;
+    font-size: 3.5rem !important;
     margin-bottom: 15px;
     display: inline-block;
-    animation: giftPulse 1.5s infinite alternate; /* Pita kado berdenyut */
+    line-height: 1;
+}
+
+/* Memicu kado jatuh saat di-scroll */
+.gift-icon.animate-drop {
+    animation: kadoJatuhMantul 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Saat di-hover, kado HANYA bergoyang tanpa mengubah display/elemen */
+.gift-box-trigger:hover .gift-icon.animate-drop {
+    animation: kadoGoyang 0.5s ease infinite alternate !important;
 }
 
 .gift-box-trigger h3 {
@@ -2001,17 +2326,16 @@ h1, h2, h3, .section-title {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
-	max-width: 300px;       /* Batas lebar maksimal panel video (bisa kamu ganti sesukamu, misal 400px atau 480px) */
+    max-width: 300px;
     margin: 0 auto;
 }
 
-/* Saat aktif, panel video akan memudar muncul dengan anggun */
 .video-panel-box.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Bingkai Pemutar Video Klasik */
+/* Bingkai Pemutar Video */
 .video-frame-border {
     width: 100%;
     border-radius: 12px;
@@ -2046,49 +2370,56 @@ h1, h2, h3, .section-title {
     margin: 0;
 }
 
-/* Class pembantu untuk menyembunyikan elemen */
 .d-none {
     display: none !important;
 }
 
-/* ANIMASI KEYFRAMES */
+/* ==========================================================================
+   ANIMASI KEYFRAMES
+   ========================================================================== */
 @keyframes giftFloat {
     0% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
     100% { transform: translateY(0); }
 }
 
-@keyframes giftPulse {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.12); }
+@keyframes kadoJatuhMantul {
+    0% {
+        opacity: 0;
+        transform: translateY(-150px) scaleY(1.2);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(0) scaleY(0.8) scaleX(1.15);
+    }
+    75% {
+        transform: translateY(-20px) scaleY(1.05) scaleX(0.95);
+    }
+    90% {
+        transform: translateY(0) scaleY(0.98) scaleX(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
-/*==========================================================================
-   BINGKAI GABUNGAN UNTUK SURAT & KADO VIDEO
-   ========================================================================== */
+@keyframes kadoGoyang {
+    0% { transform: translateY(0) scale(1) rotate(-6deg); }
+    100% { transform: translateY(0) scale(1) rotate(6deg); }
+}
+
+/* BINGKAI GABUNGAN */
 .combined-surprise-border {
     background: #ffffff;
-    border: 1px solid #dfba9d;             /* Bingkai emas satin halus luar */
-    outline: 2px solid #ffffff;            /* Garis aksen putih di dalam */
-    outline-offset: -6px;                  /* Menarik garis aksen putih masuk ke dalam */
+    border: 1px solid #dfba9d;
+    outline: 2px solid #ffffff;
+    outline-offset: -6px;
     border-radius: 24px;
-    
-    max-width: 750px;                      /* Menyesuaikan lebar ideal agar proporsional */
-    margin: 50px auto;                     /* Posisi di tengah halaman dengan jarak atas-bawah */
+    max-width: 750px;
+    margin: 50px auto;
     padding: 30px 20px;
-    
-    /* Efek bayangan jatuh yang lembut di permukaan dinding */
-    box-shadow: 
-        0 10px 30px rgba(74, 63, 53, 0.05),
-        inset 0 0 0 5px #ffffff;
-}
-
-/* Penyesuaian responsif untuk layar HP agar jarak pinggirannya pas */
-@media (max-width: 768px) {
-    .combined-surprise-border {
-        margin: 30px 15px;
-        padding: 20px 10px;
-    }
+    box-shadow: 0 10px 30px rgba(74, 63, 53, 0.05), inset 0 0 0 5px #ffffff;
 }
 
 /* ==========================================================================
@@ -2136,6 +2467,69 @@ h1, h2, h3, .section-title {
     color: #baae14;
     color: #a39284 !important;
     text-align: center !important;
+}
+/* ==========================================================================
+   TATA LETAK JUDUL BEHIND THE SCENE + FOTO APITAN
+   ========================================================================== */
+.bts-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Jarak aman antara foto dan tulisan */
+    margin: 40px auto;
+    max-width: 600px;
+}
+
+/* Desain dasar foto kecil di kanan-kiri */
+.bts-mini-photo {
+    width: 80px;          /* Ukuran foto kecil (bisa disesuaikan) */
+    height: 80px;
+    object-fit: cover;    /* Memastikan foto tidak gepeng */
+    border-radius: 8px;   /* Sudut foto sedikit melengkung */
+    border: 3px solid #fff; /* Bingkai putih tipis ala polaroid */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Efek bayangan halus */
+    transition: transform 0.3s ease;
+}
+
+/* Foto kiri miring sedikit ke kiri */
+.bts-left {
+    transform: rotate(-8deg);
+}
+
+/* Foto kanan miring sedikit ke kanan */
+.bts-right {
+    transform: rotate(8deg);
+}
+
+/* Gaya interaktif saat kursor mendekati foto kecil */
+.bts-mini-photo:hover {
+    transform: scale(1.15) rotate(0deg); /* Foto tegak dan membesar sedikit saat ditunjuk */
+    box-shadow: 0 6px 15px rgba(223, 186, 157, 0.4); /* Efek cahaya keemasan */
+    z-index: 5;
+}
+
+/* Gaya Tulisan Utama agar tetap proporsional */
+.bts-title {
+    font-family: 'Georgia', serif;
+    font-size: 2rem;
+    color: #dfba9d; /* Warna emas satin serasi */
+    margin: 0;
+    white-space: nowrap; /* Mencegah tulisan pecah ke bawah */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* PENYESUAIAN KHUSUS UNTUK LAYAR HP (RESPONSIF) */
+@media (max-width: 480px) {
+    .bts-header-container {
+        gap: 10px; /* Mempersempit jarak di layar kecil agar tidak sesak */
+    }
+    .bts-mini-photo {
+        width: 45px; /* Mengecilkan ukuran foto di HP agar pas di satu baris */
+        height: 45px;
+    }
+    .bts-title {
+        font-size: 1.4rem; /* Mengecilkan ukuran huruf di HP */
+    }
 }
 
 /* Container Gulungan Film */
@@ -2226,4 +2620,236 @@ footer {
     .hero-title { font-size: 3rem; }
     .card { padding: 25px 20px; }
     .blog-img-placeholder { height: 180px; }
+}
+/* ==========================================================================
+   CSS ANIMASI REVEAL (PITA DAN SUBTITLE) - VERSI DISELARASKAN (LEBIH SMOOTH)
+   ========================================================================== */
+
+/* --- 1. SETTING UTK JUDUL PITA (MELUNCUR DARI ATAS) --- */
+.reveal-down {
+    opacity: 0;
+    /* Jarak mulai dari atas sedikit ditambah (-35px) agar pergerakan turunnya lebih terasa */
+    transform: translateX(-50%) translateY(-35px) !important;
+    /* Durasi diperlambat menjadi 1.4s dengan kurva transisi yang sangat elegan */
+    transition: opacity 1.4s ease-out, transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-block !important;
+    position: relative;
+    left: 50%;
+}
+
+/* Ketika aktif setelah di-scroll */
+.reveal-down.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) !important;
+}
+
+/* --- 2. SETTING UTK SUB-JUDUL (MENYUSUL DARI BAWAH) --- */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(25px); /* Jarak dari bawah disesuaikan */
+    /* Durasi diperlambat menjadi 1.4s, jeda (delay) dinaikkan jadi 0.4s agar urutannya pas */
+    transition: opacity 1.4s ease-out, transform 1.4s ease-out;
+    transition-delay: 0.4s; 
+    text-align: center;
+}
+
+/* Ketika aktif setelah di-scroll */
+.reveal-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   PERBAIKAN: REVEAL LEFT & RIGHT (TETAP AMAN UNTUK ELEMEN DI TENGAH)
+   ========================================================================== */
+
+/* --- 1. MELUNCUR DARI KIRI (Untuk elemen biasa seperti teks/foto biasa) --- */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px); /* Jarak geser sedikit diperlebar agar dramatis */
+    transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- 2. MELUNCUR DARI KANAN (Untuk elemen biasa seperti teks/foto biasa) --- */
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px); 
+    transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* ==========================================================================
+   KODE KHUSUS: REVEAL LEFT & RIGHT KHUSUS UNTUK PITA / RIBBON DI TENGAH
+   ========================================================================== */
+
+/* Versi Khusus Kiri (Menggabungkan geser kiri dengan kunci tengah 50%) */
+.reveal-left-center {
+    opacity: 0;
+    display: inline-block !important;
+    position: relative;
+    left: 50%;
+    /* Menggunakan jarak geser baru (-60px) dengan transisi 1.5s yang super mulus */
+    transform: translateX(calc(-50% - 60px)) translateY(0) !important;
+    transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left-center.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) !important; /* Kembali lurus di tengah */
+}
+
+/* Versi Khusus Kanan (Menggabungkan geser kanan dengan kunci tengah 50%) */
+.reveal-right-center {
+    opacity: 0;
+    display: inline-block !important;
+    position: relative;
+    left: 50%;
+    /* Menggunakan jarak geser baru (+60px) dengan transisi 1.5s yang super mulus */
+    transform: translateX(calc(-50% + 60px)) translateY(0) !important;
+    transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right-center.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) !important; /* Kembali lurus di tengah */
+}
+
+/* ==========================================================================
+   KODE ANIMASI ZOOM (NORMAL & UNTUK ELEMEN DI TENGAH)
+   ========================================================================== */
+
+/* --- 1. MELETUP MEMBESAR LEMBUT (ZOOM BOUNCE - NORMAL) --- */
+.reveal-zoom {
+    opacity: 0;
+    transform: scale(0.8); /* Dibuat sedikit lebih kecil di awal agar efek "mekar" lebih terasa */
+    transition: opacity 1.3s ease-out, transform 1.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Efek membal diperlambat */
+}
+.reveal-zoom.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* --- 2. MELETUP MEMBESAR LEMBUT KHUSUS UNTUK PITA / ELEMEN DI TENGAH --- */
+.reveal-zoom-center {
+    opacity: 0;
+    display: inline-block !important;
+    position: relative;
+    left: 50%;
+    /* Mengunci posisi tengah (-50%) sekaligus memperkecil skala awal (0.8) */
+    transform: translateX(-50%) scale(0.8) !important;
+    transition: opacity 1.3s ease-out, transform 1.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reveal-zoom-center.active {
+    opacity: 1;
+    /* Kembali tegak di tengah dengan ukuran penuh (scale 1) */
+    transform: translateX(-50%) scale(1) !important;
+}
+
+/* ==========================================================================
+   ANIMASI: FADE DARIPADA KIRI KE KANAN (FADE-IN SLIDE RIGHT)
+   ========================================================================== */
+
+/* --- 1. VERSI STANDAR (Untuk Teks Biasa / Paragraf / Foto) --- */
+.reveal-fade-left {
+    opacity: 0;
+    /* Mulai dari agak kiri (-40px) */
+    transform: translateX(-40px);
+    transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ketika aktif (mencapai tengah layar) */
+.reveal-fade-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* --- 2. VERSI TENGAH (Khusus untuk Judul Pita / Ribbon di Tengah) --- */
+.reveal-fade-left-center {
+    opacity: 0;
+    display: inline-block !important;
+    position: relative;
+    left: 50%;
+    /* Mengunci posisi tengah (-50%) sekaligus menarik 40px ke kiri untuk ancang-ancang */
+    transform: translateX(calc(-50% - 40px)) translateY(0) !important;
+    transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ketika aktif (mencapai tengah layar) */
+.reveal-fade-left-center.active {
+    opacity: 1;
+    /* Kembali lurus presisi di tengah */
+    transform: translateX(-50%) translateY(0) !important;
+}
+
+/* ==========================================================================
+   TATA LETAK BINTANG BERURUTAN (STAGGERED STARS)
+   ========================================================================== */
+.star-rating-container {
+    display: flex;
+    justify-content: center; /* Memaksa seluruh barisan bintang berada di tengah */
+    align-items: center;
+    gap: 8px;                /* Jarak antar bintang */
+    margin: 0px auto;
+    width: 100%;
+}
+
+.star-item {
+    flex-shrink: 0;
+    font-size: 0.85rem;       /* Atur ukuran bintang sesuai selera */
+}
+
+[class*="reveal-"].active {
+    /* Mengunci durasi menjadi 2.2 detik (silakan ubah angka ini sesuai selera) */
+    transition-duration: 2.2s !important; 
+}
+
+/* ==========================================================================
+   ANIMASI EFEK MENEMPEL STIKER (STICKER SLAP EFFECT)
+   ========================================================================== */
+
+/* --- 1. VERSI STANDAR (Untuk Foto Polaroid / Ornamen di Pinggir) --- */
+.reveal-sticker {
+    opacity: 0;
+    /* Ancang-ancang: melayang agak atas, miring -15 derajat, agak besar, dan bayangan menjauh */
+    transform: translateY(-20px) scale(1.15) rotate(-15deg);
+    filter: drop-shadow(0 15px 10px rgba(0, 0, 0, 0.15));
+    /* Menggunakan kurva cubic-bezier khusus agar ada efek membal "PLAK!" saat menempel */
+    transition: opacity 0.5s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.3), filter 0.8s ease;
+}
+
+/* Ketika stiker menempel di tengah layar */
+.reveal-sticker.active {
+    opacity: 1;
+    /* Kembali ke posisi asli, lurus/miring dikit (-3deg agar natural), bayangan tipis */
+    transform: translateY(0) scale(1) rotate(-3deg);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12));
+}
+
+
+/* --- 2. VERSI TENGAH (Khusus untuk Elemen/Pita yang Wajib di Tengah Layar) --- */
+.reveal-sticker-center {
+    opacity: 0;
+    display: inline-block !important;
+    position: relative;
+    left: 50%;
+    /* Mengunci posisi tengah (-50%), ditinggikan, dibesarkan, dan dimiringkan */
+    transform: translateX(-50%) translateY(-20px) scale(1.15) rotate(-10deg) !important;
+    filter: drop-shadow(0 15px 10px rgba(0, 0, 0, 0.15));
+    transition: opacity 0.5s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.3), filter 0.8s ease;
+}
+
+/* Ketika stiker tengah menempel */
+.reveal-sticker-center.active {
+    opacity: 1;
+    /* Kembali tegak dan pas di tengah tanpa kemiringan berlebih */
+    transform: translateX(-50%) translateY(0) scale(1) rotate(0deg) !important;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12));
 }
