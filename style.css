@@ -238,6 +238,31 @@ body {
     }
 }
 
+/* Styling untuk petunjuk scroll ke bawah */
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    color: #8a7665; /* Sesuaikan dengan warna teks tema kamu */
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.down-arrow {
+    margin-top: 5px;
+    font-size: 1.5rem;
+    animation: bounceDown 2s infinite; /* Animasi bergerak turun */
+}
+
+/* Animasi panah bergerak naik turun */
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
 /* Container Utama Tombol */
 .unlock-container {
     text-align: center;

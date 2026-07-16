@@ -13,7 +13,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> <!-- LIBRARY UNTUK EFEK HUJAN KONFETI -->
 
 </head>
-<body>
+<body style="display: none;" id="content-body">
 	<audio id="hoverSound"> <!-- Audio Efek Suara Saat Hover Foto Profil -->
 		<source src="sound/Party Popper.mp3" type="audio/mp3">
 	</audio>
@@ -33,7 +33,7 @@
         
         <p class="hero-name">Astri Fitriani</p>
 			<div class="scroll-indicator">
-					<p>Scroll ke bawah</p>
+					<br><br><p>Scroll ke bawah</p>
 				<div class="down-arrow">↓</div>
 			</div>
 	
@@ -1420,15 +1420,19 @@
 				});
 			}
 		});
-		<!-- // Ganti 'rahasiahariini' dengan password yang kamu inginkan -->
-			<!-- var password = "AstriDafi1703"; -->
-			<!-- var input = prompt("Halaman ini dilindungi. Masukkan password untuk masuk:"); -->
-			
-			<!-- if (input !== password) { -->
-				<!-- alert("Password salah! Kamu tidak bisa mengakses halaman ini."); -->
-				<!-- window.location.href = "https://www.google.com"; // Tendang ke Google kalau salah -->
-			<!-- } -->
-	
+
+			var password = "AstriDafi1703";
+			var input = prompt("Halaman ini dilindungi. Masukkan password untuk masuk:");
+
+			if (input === password) {
+				// Jika benar, baru tampilkan isi web
+				document.getElementById("content-body").style.display = "block";
+			} else {
+				// Jika salah, langsung tendang tanpa membuang waktu
+				alert("Password salah! Kamu tidak bisa mengakses halaman ini.");
+				window.location.href = "https://www.google.com";
+			}
+
     </script>
 
 </body>
