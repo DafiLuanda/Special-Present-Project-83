@@ -673,68 +673,73 @@ h1, h2, h3, .section-title {
     color: #6d5440;
 }
 
+/* ==========================================================================
+   TATA LETAK BENTO GRID (VERSI FIX LAYAR LAPTOP & HP)
+   ========================================================================== */
+
 /* Pembungkus agar latar belakang area bento berwarna putih bersih */
 .bento-frame {
     width: 100%;
-    padding: 20px 10px;
+    padding: 30px 20px; /* Memberikan ruang napas putih yang cukup di HP */
     background: #ffffff;
-    border-bottom: 1px solid #f2eade; /* Batas halus sebelum masuk ke teks pastel */
+    border-bottom: 1px solid #f2eade; 
     box-sizing: border-box;
 }
 
-/* Sedikit penyesuaian margin bento agar pas di dalam frame putih */
+/* Struktur Grid Bento utama (Laptop) */
 .bento-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     grid-auto-rows: 240px; 
     gap: 15px; 
-    max-width: 95%;
-    margin: 10px auto !important; /* Margin vertikal dikecilkan agar seimbang di dalam frame */
+    max-width: 100%; /* Dibuat penuh agar jaraknya diatur presisi oleh padding bento-frame */
+    margin: 10px auto !important; 
 }
 
-/* Mengatur karakteristik item bento */
+/* Karakteristik item bento */
 .bento-item {
     position: relative;
     overflow: hidden;
-    border-radius: 16px; /* Sudut melengkung halus */
+    border-radius: 16px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    height: 100%; /* Memastikan tinggi item penuh mengisi grid slot */
+    height: 100%; 
 }
 
-/* Mengatur foto di dalam bento agar pas */
 .bento-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Foto tidak akan gepeng */
+    object-fit: cover; 
     display: block;
 }
 
-/* FORMULASI FORMULASI BENTO (Tampilan Laptop) */
+/* Formasi perluasan bento (Laptop) */
 .bento-tall {
-    grid-row: span 2; /* Memakan 2 baris ke bawah */
+    grid-row: span 2; 
 }
 
 .bento-wide {
-    grid-column: span 2; /* Memakan 2 kolom ke samping */
+    grid-column: span 2; 
 }
 
-/* RESPONSIF UNTUK HP (Biar di HP tampilannya rata, berurutan ke bawah, anti-acak-acakan) */
+/* RESPONSIF UNTUK HP (Biar di HP otomatis rata vertikal dan tidak mepet layar) */
 @media (max-width: 768px) {
+    .bento-frame {
+        padding: 20px 15px !important; /* Menjaga jarak putih kanan-kiri di HP tetap seimbang */
+    }
+
     .bento-container {
-        grid-template-columns: 1fr !important; /* Paksa jadi 1 kolom tunggal di HP */
-        grid-auto-rows: auto !important; /* Matikan sistem baris bento */
+        grid-template-columns: 1fr !important; 
+        grid-auto-rows: auto !important; 
         gap: 15px !important;
     }
     
-    /* Reset fungsi perluasan kolom/baris agar tidak merusak layout mobile */
     .bento-tall, .bento-wide {
         grid-row: auto !important;
         grid-column: auto !important;
     }
     
-    /* Paksa semua foto memiliki tinggi rata dan seragam di layar HP */
     .bento-item {
-        height: 280px !important; 
+        height: 280px !important; /* Tinggi foto seragam dan proporsional di HP */
     }
 }
 
