@@ -56,6 +56,30 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    /* Pastikan kontainer teks punya ruang di kanan-kiri agar tidak mepet */
+    .blog-content, .hero-content, .footer-content {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        text-align: center !important; /* Biar tetap simetris */
+    }
+
+    /* Pastikan paragraf tidak terlalu lebar dan punya line-height yang nyaman */
+    p {
+        line-height: 1.6 !important;
+        margin-bottom: 15px !important;
+        word-wrap: break-word; /* Mencegah kata-kata terpotong paksa */
+    }
+
+    /* Perbaikan tombol agar teks di dalamnya tidak menumpuk */
+    .tombol-buka {
+        display: inline-block;
+        padding: 15px 30px !important;
+        white-space: nowrap; /* Menjaga teks tombol tetap dalam satu baris */
+        font-size: 1rem !important;
+    }
+}
+
 
 
 /* CARDS COMMON STYLE */
@@ -749,29 +773,36 @@ h1, h2, h3, .section-title {
 /* RESPONSIF UNTUK HP (Biar di HP otomatis rata vertikal dan tidak mepet layar) */
 /* PERBAIKAN TOTAL UNTUK BABAK 3 DI MOBILE */
 @media (max-width: 768px) {
-    .bento-frame {
-        padding: 15px !important; /* Kurangi padding agar foto bisa lebih lega */
-    }
-
+    /* 1. Paksa container menjadi 1 kolom saja */
     .bento-container {
         display: grid !important;
-        grid-template-columns: 1fr !important; /* Paksa jadi 1 kolom */
-        grid-auto-rows: min-content !important; /* Biarkan tinggi menyesuaikan konten */
-        gap: 15px !important;
-        max-width: 100% !important;
+        grid-template-columns: 1fr !important;
+        grid-auto-rows: auto !important;
+        gap: 10px !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
-    
+
+    /* 2. Paksa setiap item foto menjadi kotak yang proporsional (tidak raksasa) */
     .bento-item {
-        height: 250px !important; /* Kita kecilkan sedikit dari 280px agar lebih proporsional */
-        grid-row: auto !important; /* Lepas paksaan span 2 */
-        grid-column: auto !important; /* Lepas paksaan span 2 */
+        height: 200px !important; /* Dikecilkan dari 250px agar pas di layar HP */
+        width: 100% !important;
+        grid-row: auto !important;
+        grid-column: auto !important;
+        border-radius: 12px !important;
     }
-    
-    /* Memastikan gambar tetap rapi meski container diubah */
+
+    /* 3. Pastikan gambar di dalam kotak tidak meluap */
     .bento-item img {
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
+        display: block !important;
+    }
+
+    /* 4. Pastikan pembungkusnya punya ruang di pinggir */
+    .bento-frame {
+        padding: 10px !important;
     }
 }
 
