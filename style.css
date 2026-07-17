@@ -773,36 +773,29 @@ h1, h2, h3, .section-title {
 /* RESPONSIF UNTUK HP (Biar di HP otomatis rata vertikal dan tidak mepet layar) */
 /* PERBAIKAN TOTAL UNTUK BABAK 3 DI MOBILE */
 @media (max-width: 768px) {
-    /* 1. Paksa container menjadi 1 kolom saja */
     .bento-container {
         display: grid !important;
-        grid-template-columns: 1fr !important;
-        grid-auto-rows: auto !important;
+        /* Kita atur 2 kolom agar formasi bento tetap terjaga */
+        grid-template-columns: 1fr 1fr !important;
+        /* Tinggi baris lebih kecil agar tidak raksasa di HP */
+        grid-auto-rows: 150px !important; 
         gap: 10px !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    /* 2. Paksa setiap item foto menjadi kotak yang proporsional (tidak raksasa) */
-    .bento-item {
-        height: 200px !important; /* Dikecilkan dari 250px agar pas di layar HP */
-        width: 100% !important;
-        grid-row: auto !important;
-        grid-column: auto !important;
-        border-radius: 12px !important;
-    }
-
-    /* 3. Pastikan gambar di dalam kotak tidak meluap */
-    .bento-item img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        display: block !important;
-    }
-
-    /* 4. Pastikan pembungkusnya punya ruang di pinggir */
-    .bento-frame {
         padding: 10px !important;
+    }
+
+    .bento-item {
+        border-radius: 12px !important;
+        height: auto !important; /* Biarkan grid mengatur tingginya */
+    }
+
+    /* Foto yang memanjang ke bawah (Tall) */
+    .bento-tall {
+        grid-row: span 2 !important; /* Tetap memanjang 2 baris */
+    }
+
+    /* Foto yang melebar ke samping (Wide) */
+    .bento-wide {
+        grid-column: span 2 !important; /* Tetap melebar penuh 2 kolom */
     }
 }
 
